@@ -1,10 +1,16 @@
+using System;
+using System.Collections.Generic;
+using Domain.Abstract;
+
 namespace Domain.Entity
 {
-    public class Company
+    public class Company : BaseEntity
     {
-        public long Id { get; set; }
         public string Name { get; set; }
+        public string Document { get; set; }
         public string Uri { get; set; }
         public string Description { get; set; }
+
+        public virtual List<User> Users { get; set; }
     }
 }

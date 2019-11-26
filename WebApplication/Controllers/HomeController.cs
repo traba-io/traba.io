@@ -5,25 +5,41 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Repository.Interface;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+//        private readonly IJobOpportunityService _jobOpportunity;
+//        private readonly ICompanyService _companyService;
+        
+//        public HomeController(IJobOpportunityService jobOpportunity, ICompanyService companyService)
+//        {
+//            _jobOpportunity = jobOpportunity;
+//            _companyService = companyService;
+//        }
 
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpGet("{companyUri}")]
+        public IActionResult Company(string companyUri)
+        {
+            return View();
+        }
+        
+        [HttpGet("empresas")]
+        public IActionResult Companies([FromQuery] int pageIndex = 1, [FromQuery] int pageLimit = 10)
+        {
+            return View();
+        }
+        
+        [HttpGet("{companyUri}/{jobOpportunityUri}")]
+        public IActionResult JobOpportunity(string companyUri, string jobOpportunityUri)
         {
             return View();
         }

@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - traba.io</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/footer.css"/>
 </head>
 <body>
 <header>
@@ -21,8 +22,12 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Companies">Empresas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Index">Sobre</a>
+                    </li>
                 </ul>
             </div>
+            <a href="/ivia/desenvolvedor-csharp" class="btn btn-outline-primary">Publicar Vaga</a>
         </div>
     </nav>
 </header>
@@ -32,11 +37,101 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2019 - traba.io
+@* <footer class="border-top footer text-muted"> *@
+@*     <div class="container"> *@
+@*         &copy; 2019 - traba.io *@
+@*     </div> *@
+@* </footer> *@
+
+<footer id="footer" class="footer-1">
+    <div class="main-footer widgets-dark typo-light">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="widget subscribe no-box">
+                        <h5 class="widget-title">traba.io<span></span></h5>
+                        <p>About the company, little discription will goes here.. </p>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="widget no-box">
+                        <h5 class="widget-title">Acesso Rápido<span></span></h5>
+                        <ul class="thumbnail-widget">
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">Get Started</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">Top Leaders</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">Success Stories</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">Event/Tickets</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">News</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">Lifestyle</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="thumb-content">
+                                    <a href="#.">About</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="widget no-box">
+                        <h5 class="widget-title">Contrate<span></span></h5>
+                        <p>Publique sua vaga no maior portal de vagas coletivas de TI do nordeste.</p>
+                        <a class="btn" href="#." target="_blank">Publicar Vaga</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-3">
+
+                    <div class="widget no-box">
+                        <h5 class="widget-title">Entre em contato<span></span></h5>
+
+                        <p>
+                            <a href="mailto:contato@traba.io" title="glorythemes">contato@traba.io</a>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>traba.io &copy; 2019. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

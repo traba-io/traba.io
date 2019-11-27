@@ -6,6 +6,7 @@ using Domain.Entity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,8 +28,9 @@ namespace WebApplication
         {
 //            services.AddScoped<IJobOpportunityService, IJobOpportunityService>();
 //            services.AddScoped<ICompanyService, CompanyService>();
-            
-            services.AddControllersWithViews();
+//            services.AddControllersWithViews();
+
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,11 +52,9 @@ namespace WebApplication
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(opts =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                opts.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

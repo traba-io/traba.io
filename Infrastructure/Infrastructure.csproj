@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Pagar.me" Version="2.6.15" />
+    </ItemGroup>
+
 </Project>

@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.0.1" />
     </ItemGroup>
 
 </Project>

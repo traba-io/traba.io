@@ -13,16 +13,16 @@ namespace Repository.Service
         public JobOpportunityService(TrabaIoContext context) : base(context) { }
 
         public Task<List<JobOpportunity>> Get(int pageIndex = 1, int pageLimit = 10) =>
-            Context.JobOpportunities.ToListAsync();
+            Context.JobOpportunities.OrderByDescending(jo => jo.CreatedDate).Skip(pageLimit*(pageIndex - 1)).Take(pageLimit).ToListAsync();
 
         public Task<List<JobOpportunity>> Get(Company company, int pageIndex = 1, int pageLimit = 10) =>
-            Context.JobOpportunities.Where(jo => jo.CompanyId == company.Id).ToListAsync();
+            Context.JobOpportunities.Where(jo => jo.CompanyId == company.Id).Skip(pageLimit*pageIndex-1).Take(pageLimit).ToListAsync();
 
         public Task<JobOpportunity> Get(string companyUri, string uri) =>
-            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Uri == uri && jo.Company.Uri == companyUri);
+            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Namespace == uri && jo.Company.Uri == companyUri);
 
         public Task<JobOpportunity> Get(Company company, string uri) =>
-            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Uri == uri && jo.CompanyId == company.Id);
+            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Namespace == uri && jo.CompanyId == company.Id);
 
         public Task<JobOpportunity> Get(long id) => 
             Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Id == id);

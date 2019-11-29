@@ -8,8 +8,8 @@ namespace Repository.Configuration
     {
         public void Configure(EntityTypeBuilder<JobOpportunity> builder)
         {
-            builder.HasIndex(jo => new {jo.CompanyId, jo.Uri}).IsUnique();
-            builder.Property(jo => jo.Uri).IsRequired();
+            builder.HasIndex(jo => new {jo.CompanyId, Uri = jo.Namespace}).IsUnique();
+            builder.Property(jo => jo.Namespace).IsRequired();
         }
     }
 }

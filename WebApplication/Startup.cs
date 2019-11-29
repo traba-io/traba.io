@@ -3,32 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entity;
+using Domain.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Repository;
 using Repository.Interface;
 using Repository.Service;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace WebApplication
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment hostingEnvironment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(hostingEnvironment.ContentRootPath)
+                .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+            
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
         
         public void ConfigureServices(IServiceCollection services)
         {
-//            services.AddScoped<IJobOpportunityService, IJobOpportunityService>();
-//            services.AddScoped<ICompanyService, CompanyService>();
-//            services.AddControllersWithViews();
+            services.AddDbContext<TrabaIoContext>(options =>
+            {
+                options
+                    .UseLazyLoadingProxies()
+                    .UseNpgsql(EnvironmentVariables.MainConnectionString ?? Configuration.GetConnectionString("MainConnectionString"));
+            });
+            
+            services.AddIdentity<User, IdentityRole>(opts => { opts.SignIn.RequireConfirmedEmail = true; })
+                .AddEntityFrameworkStores<TrabaIoContext>().AddDefaultTokenProviders();
+            
+            services.AddScoped<IJobOpportunityService, JobOpportunityService>();
+            services.AddScoped<ICompanyService, CompanyService>();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }

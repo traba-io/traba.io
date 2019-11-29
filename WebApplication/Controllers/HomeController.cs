@@ -12,18 +12,19 @@ namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-//        private readonly IJobOpportunityService _jobOpportunity;
-//        private readonly ICompanyService _companyService;
+        private readonly IJobOpportunityService _jobOpportunity;
+        private readonly ICompanyService _companyService;
         
-//        public HomeController(IJobOpportunityService jobOpportunity, ICompanyService companyService)
-//        {
-//            _jobOpportunity = jobOpportunity;
-//            _companyService = companyService;
-//        }
-
-        public IActionResult Index()
+        public HomeController(IJobOpportunityService jobOpportunity, ICompanyService companyService)
         {
-            return View();
+            _jobOpportunity = jobOpportunity;
+            _companyService = companyService;
+        }
+
+        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 10)
+        {
+            var jobs = await _jobOpportunity.Get(pageIndex, pageLimit);
+            return View(jobs);
         }
 
         [HttpGet("{companyUri}")]

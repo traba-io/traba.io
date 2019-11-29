@@ -19,10 +19,10 @@ namespace Repository.Service
             Context.JobOpportunities.Where(jo => jo.CompanyId == company.Id).Skip(pageLimit*pageIndex-1).Take(pageLimit).ToListAsync();
 
         public Task<JobOpportunity> Get(string companyUri, string uri) =>
-            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Namespace == uri && jo.Company.Uri == companyUri);
+            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Uri == uri && jo.Company.Namespace == companyUri);
 
         public Task<JobOpportunity> Get(Company company, string uri) =>
-            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Namespace == uri && jo.CompanyId == company.Id);
+            Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Uri == uri && jo.CompanyId == company.Id);
 
         public Task<JobOpportunity> Get(long id) => 
             Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Id == id);

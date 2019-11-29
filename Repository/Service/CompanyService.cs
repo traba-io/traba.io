@@ -13,7 +13,7 @@ namespace Repository.Service
 
         public Task<List<Company>> Get(int pageIndex = 1, int pageLimit = 10) => Context.Companies.ToListAsync();
 
-        public Task<Company> Get(string uri) => Context.Companies.FirstOrDefaultAsync(c => c.Uri == uri);
+        public Task<Company> Get(string uri) => Context.Companies.FirstOrDefaultAsync(c => c.Namespace == uri);
 
         public Task<Company> Get(long id) => Context.Companies.FirstOrDefaultAsync(c => c.Id == id);
     }

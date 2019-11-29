@@ -8,11 +8,11 @@ namespace Repository.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Uri",
-                table: "JobOpportunities");
+                table: "Companies");
 
             migrationBuilder.AddColumn<string>(
                 name: "Namespace",
-                table: "JobOpportunities",
+                table: "Companies",
                 nullable: true);
         }
 
@@ -20,11 +20,11 @@ namespace Repository.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Namespace",
-                table: "JobOpportunities");
+                table: "Companies");
 
             migrationBuilder.AddColumn<string>(
                 name: "Uri",
-                table: "JobOpportunities",
+                table: "Companies",
                 type: "text",
                 nullable: true);
         }

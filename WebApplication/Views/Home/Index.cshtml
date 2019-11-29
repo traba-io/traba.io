@@ -11,13 +11,13 @@
                 <div class="card-body">
                     <h5 class="card-title">@job.Title</h5>
                     <p class="card-text">@job.Excerpt</p>
-                    <a href="/@job.Company.Uri/@job.Namespace" class="btn btn-primary">Visualizar</a>
+                    <a href="/@job.Company.Namespace/@job.Uri" class="btn btn-primary">Visualizar</a>
                 </div>
                 <div class="card-footer">
-                    <a href="/@job.Company.Uri">
+                    <a href="/@job.Company.Namespace">
                         <small class="text-muted float-left">@job.Company.Name</small>
                     </a>
-                    <small class="text-muted float-right">@job.CreatedDate</small>
+                    <small class="text-muted float-right">@job.AvailableUntil ?? @job.CreatedDate</small>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(TrabaIoContext))]
-    [Migration("20191129174609_ChangeCompanyUriToNamespace")]
+    [Migration("20191129175102_ChangeCompanyUriToNamespace")]
     partial class ChangeCompanyUriToNamespace
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,9 @@ namespace Repository.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("Namespace")
+                        .HasColumnType("text");
+
                     b.Property<string>("Neighborhood")
                         .HasColumnType("text");
 
@@ -66,9 +69,6 @@ namespace Repository.Migrations
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Uri")
-                        .HasColumnType("text");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("text");
@@ -100,9 +100,6 @@ namespace Repository.Migrations
                     b.Property<string>("Excerpt")
                         .HasColumnType("text");
 
-                    b.Property<string>("Namespace")
-                        .HasColumnType("text");
-
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
@@ -111,6 +108,9 @@ namespace Repository.Migrations
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .HasColumnType("text");

@@ -27,22 +27,23 @@ namespace WebApplication.Controllers
             return View(jobs);
         }
 
-        [HttpGet("{companyUri}")]
-        public IActionResult Company(string companyUri)
+        [HttpGet("{companyNamespace}")]
+        public IActionResult Company(string companyNamespace)
         {
             return View();
         }
         
         [HttpGet("empresas")]
-        public IActionResult Companies([FromQuery] int pageIndex = 1, [FromQuery] int pageLimit = 10)
+        public IActionResult Companies(int pageIndex = 1, int pageLimit = 10)
         {
             return View();
         }
         
-        [HttpGet("{companyUri}/{jobOpportunityUri}")]
-        public IActionResult JobOpportunity(string companyUri, string jobOpportunityUri)
+        [HttpGet("{companyNamespace}/{jobOpportunityUri}")]
+        public async Task<IActionResult> JobOpportunity(string companyNamespace, string jobOpportunityUri)
         {
-            return View();
+            var job = await _jobOpportunity.Get(companyNamespace, jobOpportunityUri);
+            return View(job);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

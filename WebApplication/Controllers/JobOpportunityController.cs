@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Controllers
 {
-    [Authorize]
+//    [Authorize]
     [Route("parceiros")]
     public class JobOpportunityController : Controller
     {

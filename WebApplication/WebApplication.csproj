@@ -2,6 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
+        <Company>traba.io</Company>
+        <Product>traba.io</Product>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <NeutralLanguage>pt-BR</NeutralLanguage>
+        <FileVersion>1.0.0</FileVersion>
     </PropertyGroup>
 
 

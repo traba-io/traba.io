@@ -168,6 +168,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a asp-area="Partners" asp-controller="Company" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/empresas") ? "active" : "")">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>
+                                Empresas
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a asp-area="Partners" asp-controller="JobOpportunity" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/oportunidades") ? "active" : "")">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>

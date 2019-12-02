@@ -6,7 +6,7 @@ namespace WebApplication.Areas.Partners.Controllers
 {
     [Area("Partners")]
     [Route("parceiros/faturas")]
-    [Authorize]
+//    [Authorize]
     public class InvoiceController : Controller
     {
         public IActionResult Index()

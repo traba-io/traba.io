@@ -1,15 +1,16 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication.Controllers
+namespace WebApplication.Areas.Partners.Controllers
 {
-//    [Authorize]
-    [Route("parceiros")]
+    [Area("Partners")]
+    [Route("parceiros/oportunidades")]
+    [Authorize]
     public class JobOpportunityController : Controller
     {
-        [HttpGet("vagas")]
         public IActionResult Index()
         {
+            ViewBag.Title = "Oportunidades";
             return View();
         }
     }

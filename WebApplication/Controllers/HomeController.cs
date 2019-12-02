@@ -27,10 +27,15 @@ namespace WebApplication.Controllers
             return View(jobs);
         }
 
-        [HttpGet("{companyNamespace}")]
-        public IActionResult Company(string companyNamespace)
+        [HttpGet("empresas/{companyNamespace}")]
+        public async Task<IActionResult> Company(string companyNamespace)
         {
-            return View();
+            var company = await _companyService.Get(companyNamespace);
+            
+            if (company is null)
+                return NotFound();
+            
+            return View(company);
         }
         
         [HttpGet("empresas")]
@@ -39,7 +44,7 @@ namespace WebApplication.Controllers
             return View();
         }
         
-        [HttpGet("{companyNamespace}/{jobOpportunityUri}")]
+        [HttpGet("empresas/{companyNamespace}/vagas/{jobOpportunityUri}")]
         public async Task<IActionResult> JobOpportunity(string companyNamespace, string jobOpportunityUri)
         {
             var job = await _jobOpportunity.Get(companyNamespace, jobOpportunityUri);

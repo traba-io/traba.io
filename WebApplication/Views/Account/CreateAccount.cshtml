@@ -1,3 +1,4 @@
+@model CreateAccountViewModel
 @{
     Layout = "_LoginLayout";
 }
@@ -13,7 +14,7 @@
 
             <form method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nome">
+                    <input type="text" class="form-control" asp-for="FirstName" placeholder="Nome">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -21,7 +22,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Sobrenome">
+                    <input type="text" class="form-control" asp-for="LastName" placeholder="Sobrenome">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -29,7 +30,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -37,7 +38,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Senha">
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Senha">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -45,7 +46,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Confirme sua senha">
+                    <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Confirme sua senha">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

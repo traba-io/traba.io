@@ -1,10 +1,15 @@
-﻿@using WebApplication.Controllers
+﻿@using Microsoft.AspNetCore.Http
+@using WebApplication.Controllers
+@using WebApplication.Extensions
+@{ 
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Blank Page</title>
+    <title>@ViewBag.Title - Parceiros - traba.io</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -155,7 +160,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="../gallery.html" class="nav-link active">
+                        <a asp-area="Partners" asp-controller="Home" asp-action="Index" class="nav-link @(Html.IsMenuActive("dashboard") ? "active" : "")">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -163,7 +168,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../gallery.html" class="nav-link">
+                        <a asp-area="Partners" asp-controller="JobOpportunity" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/oportunidades") ? "active" : "")">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>
                                 Oportunidades
@@ -171,7 +176,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../gallery.html" class="nav-link">
+                        <a asp-area="Partners" asp-controller="Invoice" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/faturas") ? "active" : "")">
                             <i class="nav-icon fas fa-file-invoice-dollar"></i>
                             <p>
                                 Faturas

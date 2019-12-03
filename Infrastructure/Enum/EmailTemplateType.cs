@@ -2,6 +2,7 @@ namespace Infrastructure.Enum
 {
     public enum EmailTemplateType
     {
-        ConfirmAccount
+        ConfirmAccount,
+        ResetPassword
     }
 }

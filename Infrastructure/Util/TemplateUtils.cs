@@ -14,6 +14,7 @@ namespace Infrastructure.Util
             var path = templateType switch
             {
                 EmailTemplateType.ConfirmAccount => Path.Combine(mainPath, $"Templates/ConfirmAccount.html"),
+                EmailTemplateType.ResetPassword => Path.Combine(mainPath, $"Templates/ResetPassword.html"),
                 _ => throw new ArgumentOutOfRangeException(nameof(templateType), templateType, null)
             };
             return path;

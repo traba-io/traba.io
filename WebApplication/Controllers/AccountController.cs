@@ -61,6 +61,40 @@ namespace WebApplication.Controllers
             return View();
         }
         
+        [HttpPost("esqueci-minha-senha")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel viewModel)
+        {
+            var user = await _userManager.FindByEmailAsync(viewModel.Email);
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var resetToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Url.Action("RecoveryPassword", "Account",
+                new {userId = user.Id, code = resetToken}, Request.Scheme);
+            
+            await _emailService.SendEmail(viewModel.Email, "Crie sua nova senha!", EmailTemplateType.ResetPassword,
+                new {resetPasswordUrl = callbackUrl});
+            
+            ViewBag.Title = "Esqueci minha senha";
+            return View();
+        }
+
+        [HttpGet("recuperar-senha")]
+        public IActionResult RecoveryPassword()
+        {
+            ViewBag.Title = "Recuperar senha";
+            return View();
+        }
+        
+        [HttpPost("recuperar-senha")]
+        public async Task<IActionResult> RecoveryPassword(RecoveryPasswordViewModel viewModel, [FromQuery] string userId, [FromQuery] string code)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var resetToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ResetPasswordAsync(user, resetToken, viewModel.Password);
+            if(result.Succeeded) return LocalRedirect(Url.Action("Login"));
+            ViewBag.Title = "Recuperar senha";
+            return View();
+        }
+        
         [HttpGet("criar-conta")]
         public IActionResult CreateAccount()
         {
@@ -114,13 +148,6 @@ namespace WebApplication.Controllers
             
             ViewBag.Title = "Criar conta";
             
-            return View();
-        }
-        
-        [HttpGet("recuperar-senha")]
-        public IActionResult RecoveryPassword()
-        {
-            ViewBag.Title = "Recuperar senha";
             return View();
         }
     }

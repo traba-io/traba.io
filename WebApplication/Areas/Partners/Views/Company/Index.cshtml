@@ -19,18 +19,52 @@
 <section class="content">
     <!-- Default box -->
     <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Title</h3>
+        <div class="card-header border-0">
+            <h3 class="card-title">Empresas</h3>
+            <div class="card-tools">
+                <a href="#" class="btn-sm">Nova Empresa</a>
+                <ul class="pagination pagination-sm float-right">
+                    <li class="page-item">
+                        <a class="page-link" href="#">«</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">»</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="card-body">
-            Start creating your amazing application!
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th></th>
+                    <th>CNPJ</th>
+                </tr>
+                </thead>
+                <tbody>
+                @for (var i = 1; i <= 1; i++)
+                {
+                    <tr>
+                        <td>Indgo Soluções em Tecnologia <i class="fas fa-check-circle fa-xs" style="color: #1b6ec2; display: @(i%2 == 0 ? "none" : "")"></i></td>
+                        <td><span class="badge bg-danger" style="display: @(i%2 == 0 ? "none" : "")">DONO</span></td>
+                        <td>30.232.370/0001-15</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-            Footer
-        </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
 </section>
 <!-- /.content -->

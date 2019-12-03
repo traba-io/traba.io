@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Areas.Partners.Controllers
 {
+    [Authorize]
     [Area("Partners")]
     [Route("parceiros/faturas")]
-//    [Authorize]
     public class InvoiceController : Controller
     {
         public IActionResult Index()

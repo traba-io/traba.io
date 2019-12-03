@@ -1,6 +1,10 @@
 using System;
+using System.Reflection;
+using AutoMapper;
 using Domain.Entity;
-using Domain.Utils;
+using Domain.Util;
+using Infrastructure.Interface;
+using Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Repository;
 using Repository.Interface;
 using Repository.Service;
+using WebApplication.MapperProfiles;
 
 namespace WebApplication
 {
@@ -43,6 +48,8 @@ namespace WebApplication
             services.AddScoped<IJobOpportunityService, JobOpportunityService>();
             services.AddScoped<ICompanyService, CompanyService>();
             
+            services.AddScoped<IEmailService, EmailService>();
+            
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -73,6 +80,8 @@ namespace WebApplication
                 options.LoginPath = "/conta/entrar";
                 options.SlidingExpiration = true;
             });
+
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }

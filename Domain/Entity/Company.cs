@@ -22,7 +22,5 @@ namespace Domain.Entity
         public string Street { get; set; }
         public string StreetNumber { get; set; }
         public string ZipCode { get; set; }
-
-        public virtual List<User> Users { get; set; }
     }
 }

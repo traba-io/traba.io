@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Areas.Partners.Controllers
 {
+    [Authorize]
     [Area("Partners")]
-//    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()

@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Areas.Partners.Controllers
 {
+    [Authorize]
     [Area("Partners")]
     [Route("parceiros/oportunidades")]
-//    [Authorize]
     public class JobOpportunityController : Controller
     {
         public IActionResult Index()

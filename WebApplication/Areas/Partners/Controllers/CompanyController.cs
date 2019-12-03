@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Areas.Partners.Controllers
 {
+    [Authorize]
     [Area("Partners")]
     [Route("parceiros/empresas")]
     public class CompanyController : Controller

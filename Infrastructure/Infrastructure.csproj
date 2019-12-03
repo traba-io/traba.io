@@ -13,7 +13,14 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Content Include="Templates\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Pagar.me" Version="2.6.15" />
+      <PackageReference Include="Sendgrid" Version="9.12.0" />
     </ItemGroup>
 
 </Project>

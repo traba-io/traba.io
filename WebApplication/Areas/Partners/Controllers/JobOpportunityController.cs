@@ -13,5 +13,12 @@ namespace WebApplication.Areas.Partners.Controllers
             ViewBag.Title = "Oportunidades";
             return View();
         }
+        
+        [HttpGet("criar")]
+        public IActionResult New()
+        {
+            ViewBag.Title = "Nova Oportunidade";
+            return View();
+        }
     }
 }

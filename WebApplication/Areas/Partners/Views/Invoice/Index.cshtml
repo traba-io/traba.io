@@ -19,18 +19,61 @@
 <section class="content">
     <!-- Default box -->
     <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Title</h3>
+        <div class="card-header border-0">
+            <h3 class="card-title">Faturas</h3>
+            
+            <div class="card-tools">
+                <a href="#" >Nova Fatura</a>
+            </div>
         </div>
-        <div class="card-body">
-            Start creating your amazing application!
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Empresa</th>
+                    <th width="10%">Disponibilidade</th>
+                    <th width="15%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                @for(var i = 1; i <= 10; i++)
+                {
+                    <tr>
+                        <td>Update software</td>
+                        <td>Indgo Soluções em Tecnologia <i class="fas fa-check-circle fa-xs" style="color: #1b6ec2; display: inline"></i></td>
+                        <td>31/12/2019 23:59</td>
+                        <td>
+                            <span class="badge bg-gradient-success">PUBLICADO</span>
+                            <span class="badge bg-gradient-primary" style="display: @(i%2 == 0 ? "none" : "")">PROMOVIDO</span>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-            Footer
-        </div>
-        <!-- /.card-footer-->
+        <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        <li class="page-item">
+                            <a class="page-link" href="#">«</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">»</a>
+                        </li>
+                    </ul>
+                </div>
+        <!-- /.card-footer -->
     </div>
-    <!-- /.card -->
 </section>
 <!-- /.content -->

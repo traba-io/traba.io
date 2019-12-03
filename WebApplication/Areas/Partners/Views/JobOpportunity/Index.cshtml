@@ -23,24 +23,7 @@
             <h3 class="card-title">Oportunidades</h3>
             
             <div class="card-tools">
-                <a href="#" class="btn-sm">Nova Oportunidade</a>
-                <ul class="pagination pagination-sm float-right">
-                    <li class="page-item">
-                        <a class="page-link" href="#">«</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">»</a>
-                    </li>
-                </ul>
+                <a asp-area="Partners" asp-action="New" >Nova Oportunidade</a>
             </div>
         </div>
         <!-- /.card-header -->
@@ -71,6 +54,26 @@
             </table>
         </div>
         <!-- /.card-body -->
+        <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        <li class="page-item">
+                            <a class="page-link" href="#">«</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">»</a>
+                        </li>
+                    </ul>
+                </div>
+        <!-- /.card-footer -->
     </div>
 </section>
 <!-- /.content -->

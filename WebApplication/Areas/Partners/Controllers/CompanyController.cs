@@ -8,9 +8,17 @@ namespace WebApplication.Areas.Partners.Controllers
     [Route("parceiros/empresas")]
     public class CompanyController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index() 
         {
+            ViewBag.Title = "Empresas";
             return View();
+        }
+
+        [HttpGet("criar")]
+        public IActionResult New()
+        {
+            ViewBag.Title = "Nova empresa";
+            return View();   
         }
     }
 }

@@ -21,7 +21,7 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <form role="form">
+            <form id="newCompanyForm" role="form" method="post">
                 <div class="row">
                     <div class="col-sm-6">
                         <!-- text input -->
@@ -48,7 +48,7 @@
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label>Telefone de contato</label>
-                            <input type="email" class="form-control" asp-for="Phone" placeholder="(85) 5555-5555">
+                            <input type="text" class="form-control" asp-for="Phone" placeholder="(85) 5555-5555">
                         </div>
                     </div>
                     <div class="col-sm-2">
@@ -111,7 +111,7 @@
             <a asp-area="Partners" asp-action="Index" class="btn btn-outline-primary">
                 Voltar
             </a>
-            <button class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" form="newCompanyForm">
                 Cadastrar
             </button>
         </div>

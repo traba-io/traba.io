@@ -19,6 +19,6 @@ namespace Domain.Entity
         public virtual Company Company { get; set; }
         public virtual User User { get; set; }
         
-        public virtual List<JobOpportunityTag> Tags { get; set; }
+        public virtual List<JobOpportunityTag> Tags { get; set; }  
     }
 }

@@ -39,7 +39,7 @@
                 @foreach(var company in @Model)
                 {
                     <tr>
-                        <td>@company.Name</td>
+                        <td><a asp-area="Partners" asp-action="Edit" asp-route-id="@company.Id" >@company.Name</a></td>
                         <td>
                             @* <span class="badge bg-danger" style="display: @(i % 2 == 0 ? "none" : "")">DONO</span> *@
                         </td>

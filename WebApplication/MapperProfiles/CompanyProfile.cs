@@ -9,6 +9,7 @@ namespace WebApplication.MapperProfiles
         public CompanyProfile()
         {
             CreateMap<CompanyViewModel, Company>();
+            CreateMap<Company, CompanyViewModel>();
         }
     }
 }

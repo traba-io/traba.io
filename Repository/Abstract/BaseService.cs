@@ -1,5 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using Domain.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Abstract
 {
@@ -17,10 +19,14 @@ namespace Repository.Abstract
             if (o.IsNew)
             {
                 Context.Attach(o);
+                o.CreatedDate = DateTime.Now;
             }
             else
             {
-                await Context.AddAsync(o);
+                o.UpdatedDate = DateTime.Now;
+                var entry = await Context.AddAsync(o);
+                entry.State = EntityState.Modified;
+                entry.Property(e => e.CreatedDate).IsModified = false;
             }
 
             await Context.SaveChangesAsync();

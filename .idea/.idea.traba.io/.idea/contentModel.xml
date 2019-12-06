@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.2.0/build/netcoreapp1.0" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="$USER_HOME$/.nuget/packages/mstest.testadapter/1.4.0/build/_common/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mstest.testadapter/1.4.0/build/_common/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mstest.testadapter/1.4.0/build/netcoreapp1.0/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_traba.io.929163575.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="Domain" t="IncludeRecursive">
+        <e p="Abstract" t="Include">
+          <e p="BaseEntity.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Domain.csproj" t="IncludeRecursive" />
+        <e p="Entity" t="Include">
+          <e p="Company.cs" t="Include" />
+          <e p="Coupom.cs" t="Include" />
+          <e p="JobOpportunity.cs" t="Include" />
+          <e p="JobOpportunityTag.cs" t="Include" />
+          <e p="Order.cs" t="Include" />
+          <e p="OrderCoupon.cs" t="Include" />
+          <e p="OrderItem.cs" t="Include" />
+          <e p="Product.cs" t="Include" />
+          <e p="Tag.cs" t="Include" />
+          <e p="USer.cs" t="Include" />
+          <e p="UserCompany.cs" t="Include" />
+        </e>
+        <e p="Enum" t="Include">
+          <e p="CouponState.cs" t="Include" />
+          <e p="CouponType.cs" t="Include" />
+          <e p="JobOpportunityStatus.cs" t="Include" />
+          <e p="OrderStatus.cs" t="Include" />
+        </e>
+        <e p="Interface" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Util" t="Include">
+          <e p="EnvironmentVariables.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Infrastructure" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Enum" t="Include">
+          <e p="EmailTemplateType.cs" t="Include" />
+        </e>
+        <e p="Infrastructure.csproj" t="IncludeRecursive" />
+        <e p="Interface" t="Include">
+          <e p="IEmailService.cs" t="Include" />
+          <e p="IPaymentService.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Infrastructure.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Service" t="Include">
+          <e p="EmailService.cs" t="Include" />
+          <e p="PaymentService.cs" t="Include" />
+        </e>
+        <e p="Templates" t="Include">
+          <e p="ConfirmAccount.html" t="Include" />
+          <e p="ResetPassword.html" t="Include" />
+        </e>
+        <e p="Util" t="Include">
+          <e p="TemplateUtils.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Infrastructure.Tests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Infrastructure.Tests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Infrastructure.Tests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Repository" t="IncludeRecursive">
+        <e p="Abstract" t="Include">
+          <e p="BaseService.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Configuration" t="Include">
+          <e p="CompanyConfiguration.cs" t="Include" />
+          <e p="JobOpportunityConfiguration.cs" t="Include" />
+          <e p="JobOpportunityTagConfiguration.cs" t="Include" />
+          <e p="OrderCouponConfiguration.cs" t="Include" />
+          <e p="OrderItemConfiguration.cs" t="Include" />
+          <e p="UserCompanyConfiguration.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="StringExtensions.cs" t="Include" />
+        </e>
+        <e p="Factory" t="Include">
+          <e p="TrabaIoContextFactory.cs" t="Include" />
+        </e>
+        <e p="Interface" t="Include">
+          <e p="ICompanyService.cs" t="Include" />
+          <e p="IJobOpportunityService.cs" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="20191127000316_FirstMigration.cs" t="Include" />
+          <e p="20191127000316_FirstMigration.Designer.cs" t="Include" />
+          <e p="20191129152955_PaymentAndProductsAdded.cs" t="Include" />
+          <e p="20191129152955_PaymentAndProductsAdded.Designer.cs" t="Include" />
+          <e p="20191129175102_ChangeCompanyUriToNamespace.cs" t="Include" />
+          <e p="20191129175102_ChangeCompanyUriToNamespace.Designer.cs" t="Include" />
+          <e p="20191129191422_AddedAllEntities.cs" t="Include" />
+          <e p="20191129191422_AddedAllEntities.Designer.cs" t="Include" />
+          <e p="20191203121206_RemoveCompanyFromUser.cs" t="Include" />
+          <e p="20191203121206_RemoveCompanyFromUser.Designer.cs" t="Include" />
+          <e p="20191203121252_RemoveUserFromCompany.cs" t="Include" />
+          <e p="20191203121252_RemoveUserFromCompany.Designer.cs" t="Include" />
+          <e p="20191204165628_AddedUserCompanyManyToManyForeignKey.cs" t="Include" />
+          <e p="20191204165628_AddedUserCompanyManyToManyForeignKey.Designer.cs" t="Include" />
+          <e p="TrabaIoContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Repository.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Repository.csproj" t="IncludeRecursive" />
+        <e p="Service" t="Include">
+          <e p="CompanyService.cs" t="Include" />
+          <e p="JobOpportunityService.cs" t="Include" />
+        </e>
+        <e p="TrabaIOContext.cs" t="Include" />
+      </e>
+      <e p="Repository.Tests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Repository.Tests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Repository.Tests.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="traba.io.sln" t="IncludeFlat" />
+      <e p="WebApplication" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.Production.json" t="Include" />
+        <e p="appsettings.Stagging.json" t="Include" />
+        <e p="Areas" t="Include">
+          <e p="Admin" t="Include">
+            <e p="Controllers" t="Include">
+              <e p="HomeController.cs" t="Include" />
+            </e>
+            <e p="Views" t="Include" />
+          </e>
+          <e p="Partners" t="Include">
+            <e p="Controllers" t="Include">
+              <e p="CompanyController.cs" t="Include" />
+              <e p="HomeController.cs" t="Include" />
+              <e p="InvoiceController.cs" t="Include" />
+              <e p="JobOpportunityController.cs" t="Include" />
+            </e>
+            <e p="Views" t="Include">
+              <e p="_ViewImports.cshtml" t="Include" />
+              <e p="Company" t="Include">
+                <e p="Index.cshtml" t="Include" />
+                <e p="New.cshtml" t="Include" />
+              </e>
+              <e p="Home" t="Include">
+                <e p="Index.cshtml" t="Include" />
+              </e>
+              <e p="Invoice" t="Include">
+                <e p="Index.cshtml" t="Include" />
+              </e>
+              <e p="JobOpportunity" t="Include">
+                <e p="Index.cshtml" t="Include" />
+                <e p="New.cshtml" t="Include" />
+              </e>
+              <e p="Shared" t="Include">
+                <e p="_Layout.cshtml" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="AboutController.cs" t="Include" />
+          <e p="AccountController.cs" t="Include" />
+          <e p="CompanyController.cs" t="Include" />
+          <e p="HomeController.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="HtmlExtensions.cs" t="Include" />
+        </e>
+        <e p="MapperProfiles" t="Include">
+          <e p="CompanyProfile.cs" t="Include" />
+          <e p="UserProfile.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="CompanyViewModel.cs" t="Include" />
+          <e p="CreateAccountViewModel.cs" t="Include" />
+          <e p="ErrorViewModel.cs" t="Include" />
+          <e p="ForgotPasswordViewModel.cs" t="Include" />
+          <e p="JobOpportunityComponentModel.cs" t="Include" />
+          <e p="LoginViewModel.cs" t="Include" />
+          <e p="RecoveryPasswordViewModel.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="WebApplication.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="Views" t="Include">
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="_ViewStart.cshtml" t="Include" />
+          <e p="About" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Account" t="Include">
+            <e p="CreateAccount.cshtml" t="Include" />
+            <e p="ForgotPassword.cshtml" t="Include" />
+            <e p="Login.cshtml" t="Include" />
+            <e p="RecoveryPassword.cshtml" t="Include" />
+          </e>
+          <e p="Company" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Components" t="Include">
+            <e p="JobOpportunity.cshtml" t="Include" />
+          </e>
+          <e p="Home" t="Include">
+            <e p="Companies.cshtml" t="Include" />
+            <e p="Company.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+            <e p="JobOpportunity.cshtml" t="Include" />
+          </e>
+          <e p="Partners" t="Include">
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Shared" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
+            <e p="_LoginLayout.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
+          </e>
+        </e>
+        <e p="WebApplication.csproj" t="IncludeRecursive" />
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="adminlte.min.css" t="Include" />
+            <e p="adminlte.min.css.map" t="Include" />
+            <e p="footer.css" t="Include" />
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="js" t="Include">
+            <e p="adminlte.min.js" t="Include" />
+            <e p="adminlte.min.js.map" t="Include" />
+            <e p="site.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap-grid.css" t="Include" />
+                  <e p="bootstrap-grid.css.map" t="Include" />
+                  <e p="bootstrap-grid.min.css" t="Include" />
+                  <e p="bootstrap-grid.min.css.map" t="Include" />
+                  <e p="bootstrap-reboot.css" t="Include" />
+                  <e p="bootstrap-reboot.css.map" t="Include" />
+                  <e p="bootstrap-reboot.min.css" t="Include" />
+                  <e p="bootstrap-reboot.min.css.map" t="Include" />
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.css.map" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.bundle.js" t="Include" />
+                  <e p="bootstrap.bundle.js.map" t="Include" />
+                  <e p="bootstrap.bundle.min.js" t="Include" />
+                  <e p="bootstrap.bundle.min.js.map" t="Include" />
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.js.map" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                </e>
+              </e>
+              <e p="LICENSE" t="Include" />
+            </e>
+            <e p="jquery" t="Include">
+              <e p="dist" t="Include">
+                <e p="jquery.js" t="Include" />
+                <e p="jquery.min.js" t="Include" />
+                <e p="jquery.min.map" t="Include" />
+              </e>
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+            <e p="jquery-validation" t="Include">
+              <e p="dist" t="Include">
+                <e p="additional-methods.js" t="Include" />
+                <e p="additional-methods.min.js" t="Include" />
+                <e p="jquery.validate.js" t="Include" />
+                <e p="jquery.validate.min.js" t="Include" />
+              </e>
+              <e p="LICENSE.md" t="Include" />
+            </e>
+            <e p="jquery-validation-unobtrusive" t="Include">
+              <e p="jquery.validate.unobtrusive.js" t="Include" />
+              <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+              <e p="LICENSE.txt" t="Include" />
+            </e>
+          </e>
+          <e p="plugins" t="Include">
+            <e p="bootstrap.bundle.min.js" t="Include" />
+            <e p="bootstrap.bundle.min.js.map" t="Include" />
+            <e p="jquery.min.js" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>

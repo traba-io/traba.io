@@ -49,5 +49,24 @@ namespace WebApplication.Areas.Partners.Controllers
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }
+        
+        [HttpGet("editar/{id}")]
+        public async Task<IActionResult> Edit(long id)
+        {
+            var company = await _companyService.Get(id);
+            var mappedCompany = _mapper.Map<CompanyViewModel>(company);
+            ViewBag.Title = mappedCompany.Name;
+            return View("New", mappedCompany);   
+        }
+        
+        [HttpPost("editar/{id}")]
+        public async Task<IActionResult> Edit(long id, CompanyViewModel viewModel)
+        {
+            var actor = await _userManager.FindByNameAsync(User.Identity.Name);
+            var company = _mapper.Map<Company>(viewModel);
+            company.Id = id;
+            await _companyService.Save(company, actor);
+            return LocalRedirect(Url.Action("Index"));
+        }
     }
 }

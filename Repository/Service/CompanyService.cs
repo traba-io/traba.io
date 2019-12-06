@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Repository.Abstract;
+using Repository.Extensions;
 using Repository.Interface;
 
 namespace Repository.Service
@@ -25,16 +27,12 @@ namespace Repository.Service
         {
             if (o.IsNew)
             {
-                o.CreatedDate = DateTime.Now;
                 var userCompany = new UserCompany() {UserId = actor.Id, Owner = true};
                 o.Users.Add(userCompany);
             }
-            else
-            {
-                o.UpdatedDate = DateTime.Now;
-            }
-
-            o.Namespace = o.Name;
+            
+            o.Namespace = o.Name.ToUri();
+            
             return base.Save(o);
         }
     }

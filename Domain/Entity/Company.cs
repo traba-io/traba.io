@@ -6,6 +6,11 @@ namespace Domain.Entity
 {
     public class Company : BaseEntity
     {
+        public Company()
+        {
+            Users = new List<UserCompany>();
+        }
+
         public string Name { get; set; }
         public string Document { get; set; }
         public string Namespace { get; set; }
@@ -22,5 +27,7 @@ namespace Domain.Entity
         public string Street { get; set; }
         public string StreetNumber { get; set; }
         public string ZipCode { get; set; }
+
+        public virtual List<UserCompany> Users { get; set; }
     }
 }

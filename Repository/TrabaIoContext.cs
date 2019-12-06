@@ -8,6 +8,7 @@ namespace Repository
     public class TrabaIoContext : IdentityDbContext<User>
     {
         public DbSet<Company> Companies { get; set; }
+        public DbSet<UserCompany> UserCompanies { get; set; }
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<JobOpportunityTag> JobOpportunityTags { get; set; }

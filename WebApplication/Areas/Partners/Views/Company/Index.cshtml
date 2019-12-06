@@ -1,4 +1,4 @@
-@model object
+@model List<Domain.Entity.Company>
 
 @{
     Layout = "_Layout";
@@ -22,7 +22,7 @@
         <div class="card-header border-0">
             <h3 class="card-title">Empresas</h3>
             <div class="card-tools">
-                <a asp-area="Partners" asp-action="New" >Nova Empresa</a>
+                <a asp-area="Partners" asp-action="New">Nova Empresa</a>
             </div>
         </div>
         <!-- /.card-header -->
@@ -36,38 +36,48 @@
                 </tr>
                 </thead>
                 <tbody>
-                @for (var i = 1; i <= 10; i++)
+                @foreach(var company in @Model)
                 {
                     <tr>
-                        <td>Indgo Soluções em Tecnologia <i class="fas fa-check-circle fa-xs" style="color: #1b6ec2; display: @(i % 2 == 0 ? "none" : "")"></i></td>
+                        <td>@company.Name</td>
                         <td>
-                            <span class="badge bg-danger" style="display: @(i % 2 == 0 ? "none" : "")">DONO</span>
+                            @* <span class="badge bg-danger" style="display: @(i % 2 == 0 ? "none" : "")">DONO</span> *@
                         </td>
-                        <td>30.232.370/0001-15</td>
+                        <td>@company.Document</td>
                     </tr>
                 }
+@*                 @for (var i = 1; i <= 10; i++) *@
+@*                 { *@
+@*                     <tr> *@
+@*                         <td>Indgo Soluções em Tecnologia <i class="fas fa-check-circle fa-xs" style="color: #1b6ec2; display: @(i % 2 == 0 ? "none" : "")"></i></td> *@
+@*                         <td> *@
+@*                             <span class="badge bg-danger" style="display: @(i % 2 == 0 ? "none" : "")">DONO</span> *@
+@*                         </td> *@
+@*                         <td>30.232.370/0001-15</td> *@
+@*                     </tr> *@
+@*                 } *@
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            <ul class="pagination pagination-sm m-0 float-right">
-                <li class="page-item">
-                    <a class="page-link" href="#">«</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">»</a>
-                </li>
-            </ul>
+            @* <ul class="pagination pagination-sm m-0 float-right"> *@
+            @*     <li class="page-item"> *@
+            @*         <a class="page-link" href="#">«</a> *@
+            @*     </li> *@
+            @*     <li class="page-item"> *@
+            @*         <a class="page-link" href="#">1</a> *@
+            @*     </li> *@
+            @*     <li class="page-item"> *@
+            @*         <a class="page-link" href="#">2</a> *@
+            @*     </li> *@
+            @*     <li class="page-item"> *@
+            @*         <a class="page-link" href="#">3</a> *@
+            @*     </li> *@
+            @*     <li class="page-item"> *@
+            @*         <a class="page-link" href="#">»</a> *@
+            @*     </li> *@
+            @* </ul> *@
         </div>
         <!-- /.card-footer -->
     </div>

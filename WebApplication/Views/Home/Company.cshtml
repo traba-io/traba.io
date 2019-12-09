@@ -1,7 +1,10 @@
+@model Domain.Entity.Company
 @{
     ViewData["Title"] = "Empresa";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Empresa</h1>
+    <h1 class="display-4">@Model.Name</h1>
 </div>
+
+@Html.Raw(Model.Description)

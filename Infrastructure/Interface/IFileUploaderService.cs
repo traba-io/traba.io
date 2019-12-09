@@ -5,6 +5,6 @@ namespace Infrastructure.Interface
 {
     public interface IFileUploaderService
     {
-        Task Upload(MemoryStream file, string fileName);
+        Task<string> Upload(MemoryStream file, string fileName);
     }
 }

@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
             return View(jobs);
         }
 
-        [HttpGet("empresas/{companyNamespace}")]
+        [HttpGet("e/{companyNamespace}")]
         public async Task<IActionResult> Company(string companyNamespace)
         {
             var company = await _companyService.Get(companyNamespace);
@@ -39,12 +39,13 @@ namespace WebApplication.Controllers
         }
         
         [HttpGet("empresas")]
-        public IActionResult Companies(int pageIndex = 1, int pageLimit = 10)
+        public async Task<IActionResult> Companies(int pageIndex = 1, int pageLimit = 10)
         {
-            return View();
+            var companies = await _companyService.Get(pageIndex, pageLimit);
+            return View(companies);
         }
         
-        [HttpGet("empresas/{companyNamespace}/vagas/{jobOpportunityUri}")]
+        [HttpGet("e/{companyNamespace}/v/{jobOpportunityUri}")]
         public async Task<IActionResult> JobOpportunity(string companyNamespace, string jobOpportunityUri)
         {
             var job = await _jobOpportunity.Get(companyNamespace, jobOpportunityUri);

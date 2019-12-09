@@ -15,7 +15,7 @@ namespace Infrastructure.Service
         public async Task Upload(MemoryStream file, string fileName)
         {
             using var client =
-                new AmazonS3Client(EnvironmentVariables.AwsAccessKeyId, EnvironmentVariables.AwsSecretAccessKey, RegionEndpoint.USEast1);
+                new AmazonS3Client(EnvironmentVariables.AwsAccessKeyId, EnvironmentVariables.AwsSecretAccessKey, RegionEndpoint.SAEast1);
 
             var uploadRequest = new TransferUtilityUploadRequest
             {

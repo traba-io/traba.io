@@ -107,7 +107,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Descrição</label>
-                                    <textarea id="Description" asp-for="Description" name="Description"></textarea>
+                                    <textarea class="form-control" id="Description" asp-for="Description" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -156,12 +156,12 @@
                 height: 200,
                 callbacks: {
                     onImageUpload: function(files, editor, welEditable){
-                        sendFile(files[0], editor, welEditable);
+                        sendFile(files[0], this);
                     }
                 }
             });
             
-            function sendFile(file, editor, welEditable) {
+            function sendFile(file, el) {
                 data = new FormData();
                 data.append("file", file);
                 $.ajax({
@@ -172,7 +172,7 @@
                     contentType: false,
                     processData: false,
                     success: function(url) {
-                        editor.insertImage(welEditable, url);
+                        $(el).summernote('editor.insertImage', url);
                     }
                 });
             }

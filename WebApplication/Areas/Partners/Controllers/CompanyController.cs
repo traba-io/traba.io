@@ -1,12 +1,17 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entity;
+using Infrastructure.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query;
+using Org.BouncyCastle.Bcpg.OpenPgp;
+using Repository.Extensions;
 using Repository.Interface;
 using WebApplication.Models;
 
@@ -19,13 +24,15 @@ namespace WebApplication.Areas.Partners.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICompanyService _companyService;
+        private readonly IFileUploaderService _fileUploader;
         private readonly UserManager<User> _userManager;
 
-        public CompanyController(IMapper mapper, ICompanyService companyService, UserManager<User> userManager)
+        public CompanyController(IMapper mapper, ICompanyService companyService, UserManager<User> userManager, IFileUploaderService fileUploader)
         {
             _mapper = mapper;
             _companyService = companyService;
             _userManager = userManager;
+            _fileUploader = fileUploader;
         }
 
         public async Task<IActionResult> Index() 
@@ -74,7 +81,10 @@ namespace WebApplication.Areas.Partners.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
-            return Ok();
+            await using var fileMemoryStream = new MemoryStream();
+            file.CopyTo(fileMemoryStream);
+            await _fileUploader.Upload(fileMemoryStream, file.FileName.ToUri() + Path.GetExtension(file.FileName));
+            return Ok("https://s3-sa-east-1.amazonaws.com/traba.io/" + file.FileName.ToUri() + Path.GetExtension(file.FileName));
         }
     }
 }

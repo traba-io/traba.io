@@ -49,6 +49,7 @@ namespace WebApplication
             services.AddScoped<ICompanyService, CompanyService>();
             
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IFileUploaderService, S3FileUploaderService>();
             
             services.Configure<IdentityOptions>(options =>
             {

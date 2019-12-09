@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query;
@@ -67,6 +69,12 @@ namespace WebApplication.Areas.Partners.Controllers
             company.Id = id;
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
+        }
+        
+        [HttpPost("upload")]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            return Ok();
         }
     }
 }

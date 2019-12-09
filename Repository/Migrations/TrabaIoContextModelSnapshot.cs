@@ -57,6 +57,9 @@ namespace Repository.Migrations
                     b.Property<string>("Neighborhood")
                         .HasColumnType("text");
 
+                    b.Property<string>("Phone")
+                        .HasColumnType("text");
+
                     b.Property<string>("State")
                         .HasColumnType("text");
 

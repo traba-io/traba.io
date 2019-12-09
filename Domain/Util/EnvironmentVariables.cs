@@ -6,5 +6,9 @@ namespace Domain.Util
     {
         public static string MainConnectionString => Environment.GetEnvironmentVariable("MAIN_CONNECTION_STRING");
         public static string SendGridApiKey => Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+        public static string TinyPngApiKey => Environment.GetEnvironmentVariable("TINYPNG_API_KEY");
+        public static string AwsAccessKeyId => Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+        public static string AwsSecretAccessKey => Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+        public static string AwsBucketName => Environment.GetEnvironmentVariable("AWS_BUCKET_NAME");
     }
 }

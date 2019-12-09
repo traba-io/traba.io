@@ -14,7 +14,7 @@ namespace Repository.Abstract
             Context = context;
         }
         
-        public virtual async Task Save(T o)
+        public async Task Save(T o)
         {
             if (o.IsNew)
             {

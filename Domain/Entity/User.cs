@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Entity
@@ -7,6 +8,9 @@ namespace Domain.Entity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        [NotMapped]
+        public string Name => $"{FirstName} {LastName}";
 
         public virtual List<UserCompany> Companies { get; set; }
     }

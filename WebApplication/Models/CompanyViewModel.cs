@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace WebApplication.Models
 {
     public class CompanyViewModel
@@ -14,6 +16,7 @@ namespace WebApplication.Models
         public string Complementary { get; set; }
         public string Street { get; set; }
         public string StreetNumber { get; set; }
-        
+
+        public List<UserPreviewViewModel> Users { get; set; }
     }
 }

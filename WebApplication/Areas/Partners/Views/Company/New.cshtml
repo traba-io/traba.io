@@ -1,3 +1,4 @@
+@using WebApplication.Extensions
 @model CompanyViewModel
 
 @{
@@ -132,11 +133,28 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Usuários</h3>
+                <div class="card-header border-0">
+                    <h3 class="card-title">Colaboradores</h3>
+                    <div class="card-tools">
+                        <a href="#">Novo Colaborador</a>
+                    </div>
                 </div>
-                <div class="card-body">
-
+                <div class="card-body p-0">
+                    <table class="table table-hover">
+                        <tbody>
+                            @foreach(var user in @Model.Users)
+                            {
+                                <tr>
+                                    <td width="40">
+                                        <div class="image">
+                                            <img src="https://www.gravatar.com/avatar/@Html.GetMd5Hash(@user.Email)?d=identicon" class="img-circle elevation-1" width="30" alt="User Image">
+                                        </div>
+                                    </td>
+                                    <td style="vertical-align: middle; text-align: justify">@user.Name</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -23,7 +23,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AWS_ACCESS_KEY_ID": "AKIAZ5BUFLUSZPBW7MMD",
         "AWS_SECRET_ACCESS_KEY": "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",
-        "AWS_BUCKET_NAME": "traba.io"
+        "AWS_BUCKET_NAME": "traba.io",
+        "TINYPNG_API_KEY": "HGGx9fRx4grwTNTlm7TVkprqwCFCPxVw"
       }
     }
   }

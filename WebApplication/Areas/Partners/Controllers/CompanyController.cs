@@ -83,8 +83,9 @@ namespace WebApplication.Areas.Partners.Controllers
         {
             await using var fileMemoryStream = new MemoryStream();
             file.CopyTo(fileMemoryStream);
-            await _fileUploader.Upload(fileMemoryStream, file.FileName.ToUri() + Path.GetExtension(file.FileName));
-            return Ok("https://s3-sa-east-1.amazonaws.com/traba.io/" + file.FileName.ToUri() + Path.GetExtension(file.FileName));
+            var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName).ToLower();
+            await _fileUploader.Upload(fileMemoryStream, fileName);
+            return Ok("https://s3-sa-east-1.amazonaws.com/traba.io/" + fileName);
         }
     }
 }

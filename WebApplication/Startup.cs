@@ -87,7 +87,7 @@ namespace WebApplication
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
         
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
         {
             if (env.IsDevelopment())
             {
@@ -98,6 +98,8 @@ namespace WebApplication
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
+            context.Database.Migrate();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

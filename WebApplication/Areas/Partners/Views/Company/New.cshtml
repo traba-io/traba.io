@@ -135,14 +135,17 @@
             <div class="card">
                 <div class="card-header border-0">
                     <h3 class="card-title">Colaboradores</h3>
-                    <div class="card-tools">
-                        <a href="#">Novo Colaborador</a>
-                    </div>
+                    @if (!(Model is null))
+                    {
+                        <div class="card-tools">
+                            <a href="#">Novo Colaborador</a>
+                        </div>
+                    }
                 </div>
                 <div class="card-body p-0">
                     <table class="table table-hover">
                         <tbody>
-                            @foreach(var user in @Model.Users)
+                            @foreach(var user in @Model?.Users ?? Enumerable.Empty<UserPreviewViewModel>())
                             {
                                 <tr>
                                     <td width="40">

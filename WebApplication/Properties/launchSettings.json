@@ -24,7 +24,8 @@
         "AWS_ACCESS_KEY_ID": "AKIAZ5BUFLUSZPBW7MMD",
         "AWS_SECRET_ACCESS_KEY": "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",
         "AWS_BUCKET_NAME": "traba.io",
-        "TINYPNG_API_KEY": "HGGx9fRx4grwTNTlm7TVkprqwCFCPxVw"
+        "TINYPNG_API_KEY": "HGGx9fRx4grwTNTlm7TVkprqwCFCPxVw",
+        "DATABASE_URL": "User ID=postgres;Password=210898;Host=localhost;Port=5432;Database=trabaio;"
       }
     }
   }

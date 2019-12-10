@@ -39,7 +39,7 @@ namespace WebApplication
             {
                 options
                     .UseLazyLoadingProxies()
-                    .UseNpgsql(EnvironmentVariables.MainConnectionString ?? Configuration.GetConnectionString("MainConnectionString"));
+                    .UseNpgsql(EnvironmentVariables.DatabaseUrl);
             });
             
             services.AddIdentity<User, IdentityRole>(opts => { opts.SignIn.RequireConfirmedEmail = true; })

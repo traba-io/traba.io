@@ -23,7 +23,7 @@ namespace Infrastructure.Service
             var uploadRequest = new TransferUtilityUploadRequest
             {
                 InputStream = response,
-                Key = fileName,
+                Key = $"uploads/{fileName}",
                 BucketName = EnvironmentVariables.AwsBucketName,
                 CannedACL = S3CannedACL.PublicRead
             };
@@ -31,7 +31,7 @@ namespace Infrastructure.Service
             var fileTransferUtility = new TransferUtility(client);
             await fileTransferUtility.UploadAsync(uploadRequest);
 
-            return "https://s3-sa-east-1.amazonaws.com/traba.io/" + fileName;
+            return "https://s3-sa-east-1.amazonaws.com/traba.io/uploads/" + fileName;
         }
     }
 }

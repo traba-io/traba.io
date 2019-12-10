@@ -20,6 +20,7 @@
         <e p="Entity" t="Include">
           <e p="Company.cs" t="Include" />
           <e p="Coupom.cs" t="Include" />
+          <e p="Event.cs" t="Include" />
           <e p="JobOpportunity.cs" t="Include" />
           <e p="JobOpportunityTag.cs" t="Include" />
           <e p="Order.cs" t="Include" />
@@ -29,6 +30,7 @@
           <e p="Tag.cs" t="Include" />
           <e p="USer.cs" t="Include" />
           <e p="UserCompany.cs" t="Include" />
+          <e p="UserEvent.cs" t="Include" />
         </e>
         <e p="Enum" t="Include">
           <e p="CouponState.cs" t="Include" />
@@ -107,6 +109,7 @@
           <e p="OrderCouponConfiguration.cs" t="Include" />
           <e p="OrderItemConfiguration.cs" t="Include" />
           <e p="UserCompanyConfiguration.cs" t="Include" />
+          <e p="UserEventConfiguration.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
           <e p="StringExtensions.cs" t="Include" />
@@ -135,6 +138,8 @@
           <e p="20191204165628_AddedUserCompanyManyToManyForeignKey.Designer.cs" t="Include" />
           <e p="20191209133455_AddedCompanyPhone.cs" t="Include" />
           <e p="20191209133455_AddedCompanyPhone.Designer.cs" t="Include" />
+          <e p="20191210184925_AddedEventsToDatabase.cs" t="Include" />
+          <e p="20191210184925_AddedEventsToDatabase.Designer.cs" t="Include" />
           <e p="TrabaIoContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -177,6 +182,7 @@
           <e p="Partners" t="Include">
             <e p="Controllers" t="Include">
               <e p="CompanyController.cs" t="Include" />
+              <e p="EventController.cs" t="Include" />
               <e p="HomeController.cs" t="Include" />
               <e p="InvoiceController.cs" t="Include" />
               <e p="JobOpportunityController.cs" t="Include" />
@@ -184,6 +190,10 @@
             <e p="Views" t="Include">
               <e p="_ViewImports.cshtml" t="Include" />
               <e p="Company" t="Include">
+                <e p="Index.cshtml" t="Include" />
+                <e p="New.cshtml" t="Include" />
+              </e>
+              <e p="Event" t="Include">
                 <e p="Index.cshtml" t="Include" />
                 <e p="New.cshtml" t="Include" />
               </e>
@@ -260,6 +270,8 @@
           <e p="Home" t="Include">
             <e p="Companies.cshtml" t="Include" />
             <e p="Company.cshtml" t="Include" />
+            <e p="Event.cshtml" t="Include" />
+            <e p="Events.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
             <e p="JobOpportunity.cshtml" t="Include" />
           </e>

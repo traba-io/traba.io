@@ -12,6 +12,7 @@ namespace Domain.Entity
         [NotMapped]
         public string Name => $"{FirstName} {LastName}";
 
+        public virtual List<UserEvent> Events { get; set; }
         public virtual List<UserCompany> Companies { get; set; }
     }
 }

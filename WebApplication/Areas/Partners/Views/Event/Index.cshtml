@@ -1,0 +1,77 @@
+@model object
+
+@{
+    Layout = "_Layout";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Eventos</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header border-0">
+            <h3 class="card-title">Eventos</h3>
+            
+            <div class="card-tools">
+                <a asp-area="Partners" asp-action="New" >Novo Evento</a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Título</th>
+                    <th width="10%">Data</th>
+                    <th width="20%"></th>
+                </tr>
+                </thead>
+                <tbody>
+                @for(var i = 1; i <= 10; i++)
+                {
+                    <tr>
+                        <td>Update software</td>
+                        <td>31/12/2019 23:59</td>
+                        <td>
+                            <span class="badge bg-gradient-success">PUBLICADO</span>
+                            <span class="badge bg-gradient-primary" style="display: @(i%2 == 0 ? "none" : "")">PROMOVIDO</span>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer clearfix">
+                    <ul class="pagination pagination-sm m-0 float-right">
+                        <li class="page-item">
+                            <a class="page-link" href="#">«</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">»</a>
+                        </li>
+                    </ul>
+                </div>
+        <!-- /.card-footer -->
+    </div>
+</section>
+<!-- /.content -->

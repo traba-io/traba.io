@@ -45,6 +45,18 @@ namespace WebApplication.Controllers
             return View(companies);
         }
         
+        [HttpGet("eventos")]
+        public async Task<IActionResult> Events(int pageIndex = 1, int pageLimit = 10)
+        {
+            return View();
+        }
+        
+        [HttpGet("r/{eventUri}")]
+        public async Task<IActionResult> Event(string eventUri)
+        {
+            return View();
+        }
+        
         [HttpGet("e/{companyNamespace}/v/{jobOpportunityUri}")]
         public async Task<IActionResult> JobOpportunity(string companyNamespace, string jobOpportunityUri)
         {

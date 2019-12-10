@@ -17,6 +17,8 @@ namespace Repository
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<OrderCoupon> OrderCoupons { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<UserEvent> UserEvents { get; set; }
 
         public TrabaIoContext(DbContextOptions<TrabaIoContext> options) : base(options)
         {

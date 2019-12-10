@@ -1,5 +1,7 @@
 using System;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Util;
@@ -89,6 +91,10 @@ namespace WebApplication
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
         {
+            var ci = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

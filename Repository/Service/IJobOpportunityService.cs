@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Repository.Abstract;
 using Repository.Interface;
 
@@ -14,6 +15,17 @@ namespace Repository.Service
 
         public Task<List<JobOpportunity>> Get(int pageIndex = 1, int pageLimit = 10) =>
             Context.JobOpportunities.OrderByDescending(jo => jo.CreatedDate).Skip(pageLimit*(pageIndex - 1)).Take(pageLimit).ToListAsync();
+
+        public async Task<List<JobOpportunity>> Get(User user, int pageIndex = 1, int pageLimit = 10)
+        {
+            var result = from jo in Context.JobOpportunities
+                join c in Context.Companies on jo.CompanyId equals c.Id
+                join uc in Context.UserCompanies on c.Id equals uc.CompanyId
+                where uc.UserId == user.Id
+                select jo;
+
+            return (await result.ToListAsync());
+        }
 
         public Task<List<JobOpportunity>> Get(Company company, int pageIndex = 1, int pageLimit = 10) =>
             Context.JobOpportunities.Where(jo => jo.CompanyId == company.Id).Skip(pageLimit*pageIndex-1).Take(pageLimit).ToListAsync();

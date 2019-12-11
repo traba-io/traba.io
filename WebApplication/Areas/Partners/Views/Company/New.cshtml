@@ -129,7 +129,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src="@Model.ProfilePicture" class="img-circle img-thumbnail" alt="@Model.Name">
+                            @if(!(Model.ProfilePicture is null))
+                            {
+                                <img src="@Model.ProfilePicture" class="img-circle img-thumbnail" alt="@Model.Name">
+                            }
                         </div>
                         <div class="row">
                             <div class="col-sm-12">

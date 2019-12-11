@@ -55,6 +55,15 @@ namespace WebApplication.Areas.Partners.Controllers
         {
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             var company = _mapper.Map<Company>(viewModel);
+
+            if (viewModel.ProfilePictureUpload != null)
+            {
+                await using var fileMemoryStream = new MemoryStream();
+                viewModel.ProfilePictureUpload.CopyTo(fileMemoryStream);
+                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
+                company.ProfilePicture = await _fileUploader.Upload(fileMemoryStream, fileName);
+            }
+
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }
@@ -74,6 +83,15 @@ namespace WebApplication.Areas.Partners.Controllers
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             var company = _mapper.Map<Company>(viewModel);
             company.Id = id;
+            
+            if (viewModel.ProfilePictureUpload != null)
+            {
+                await using var fileMemoryStream = new MemoryStream();
+                viewModel.ProfilePictureUpload.CopyTo(fileMemoryStream);
+                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
+                company.ProfilePicture = await _fileUploader.Upload(fileMemoryStream, fileName);
+            }
+            
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }

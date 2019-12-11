@@ -141,6 +141,8 @@
           <e p="20191209133455_AddedCompanyPhone.Designer.cs" t="Include" />
           <e p="20191210184925_AddedEventsToDatabase.cs" t="Include" />
           <e p="20191210184925_AddedEventsToDatabase.Designer.cs" t="Include" />
+          <e p="20191211185241_AddedProfilePicturesToCompany.cs" t="Include" />
+          <e p="20191211185241_AddedProfilePicturesToCompany.Designer.cs" t="Include" />
           <e p="TrabaIoContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">

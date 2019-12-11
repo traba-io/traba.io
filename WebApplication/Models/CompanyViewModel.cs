@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApplication.Models
 {
@@ -21,6 +22,8 @@ namespace WebApplication.Models
         public string Complementary { get; set; }
         public string Street { get; set; }
         public string StreetNumber { get; set; }
+        public string ProfilePicture { get; set; }
+        public IFormFile ProfilePictureUpload { get; set; }
 
         public List<UserPreviewViewModel> Users { get; set; }
     }

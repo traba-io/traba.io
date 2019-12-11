@@ -15,7 +15,13 @@
                 </div>
                 <div class="card-footer">
                     <a asp-action="Company" asp-route-companyNamespace="@job.Company.Namespace">
-                        <small class="text-muted float-left">@job.Company.Name</small>
+                        <small class="text-muted float-left">
+                            @if (!(job.Company.ProfilePicture is null))
+                            {
+                                <img src="@job.Company.ProfilePicture" class="img-circle" width="33" alt="@job.Company.Name">
+                            }
+                            @job.Company.Name
+                        </small>
                     </a>
                     <small class="text-muted float-right">@job.CreatedDate</small>
                 </div>

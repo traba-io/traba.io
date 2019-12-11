@@ -54,7 +54,7 @@ namespace WebApplication.Controllers
         [HttpGet("health/ping")]
         public IActionResult Ping()
         {
-            return Ok();
+            return Ok("pong");
         }
         
         [HttpGet("r/{eventUri}")]

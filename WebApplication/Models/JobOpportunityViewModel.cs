@@ -10,7 +10,5 @@ namespace WebApplication.Models
         public string Description { get; set; }
         public DateTime AvailableUntil { get; set; }
         public long CompanyId { get; set; }
-
-        public List<CompanyPreviewViewModel> AvailableCompanies { get; set; }
     }
 }

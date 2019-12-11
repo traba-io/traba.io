@@ -5,6 +5,7 @@ using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Repository.Abstract;
+using Repository.Extensions;
 using Repository.Interface;
 
 namespace Repository.Service
@@ -38,5 +39,12 @@ namespace Repository.Service
 
         public Task<JobOpportunity> Get(long id) => 
             Context.JobOpportunities.FirstOrDefaultAsync(jo => jo.Id == id);
+
+        public Task Save(JobOpportunity o, User actor)
+        {
+            o.UserId = actor.Id;
+            o.Uri = o.Title.ToUri();
+            return base.Save(o);
+        }
     }
 }

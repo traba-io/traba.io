@@ -10,7 +10,6 @@ namespace Domain.Entity
         public string Excerpt { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-
         public virtual List<UserEvent> Users { get; set; }
     }
 }

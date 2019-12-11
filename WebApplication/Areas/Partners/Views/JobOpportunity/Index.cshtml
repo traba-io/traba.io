@@ -40,7 +40,7 @@
                 @foreach(var job in @Model)
                 {
                     <tr>
-                        <td>@job.Title</td>
+                        <td><a asp-action="Edit" asp-route-id="@job.Id">@job.Title</a></td>
                         <td>@job.Company.Name</td>
                         <td>@job.AvailableUntil?.ToString("d")</td>
                     </tr>

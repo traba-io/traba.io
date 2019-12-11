@@ -12,5 +12,6 @@ namespace Repository.Interface
         Task<JobOpportunity> Get(string companyUri, string uri);
         Task<JobOpportunity> Get(Company company, string uri);
         Task<JobOpportunity> Get(long id);
+        Task Save(JobOpportunity o, User actor);
     }
 }

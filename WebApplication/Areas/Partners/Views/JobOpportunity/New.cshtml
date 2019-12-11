@@ -1,5 +1,5 @@
 @using WebApplication.Extensions
-@model CompanyViewModel
+@model JobOpportunityViewModel
 
 @{
     Layout = "_Layout";
@@ -37,7 +37,7 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Título*</label>
-                                    <input type="text" class="form-control" asp-for="Name" placeholder="Professor de defesa contra as artes das trevas" required>
+                                    <input type="text" class="form-control" asp-for="Title" placeholder="Professor de defesa contra as artes das trevas" required>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Empresa*</label>
-                                    <input type="text" class="form-control" asp-for="Name" placeholder="Omni Customer Products" required>
+                                    <select asp-for="CompanyId" asp-items="@ViewBag.AvailableCompanies" style="-webkit-appearance:none;" class="form-control"></select>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +79,8 @@
                             <div class="col-sm-12">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Disponibilidade</label>
-                                    <input type="text" class="form-control" asp-for="Name" placeholder="Omni Customer Products" required>
+                                    <label>Disponibilidade*</label>
+                                    <input type="date" class="form-control" asp-for="AvailableUntil" required>
                                 </div>
                             </div>
                         </div>
@@ -89,14 +89,20 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <label>Resumo</label>
-                                    <textarea class="form-control"></textarea>
+                                    <textarea asp-for="Excerpt" maxlength="120" class="form-control"></textarea>
+                                    <small id="excerptHelp" class="form-text text-muted">Utilizado quando a vaga é compartilhada e para melhorar o SEO.</small>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
+                        @* <div class="row"> *@
+                        @*     <div class="col-sm-12"> *@
+                        @*         <!-- text input --> *@
+                        @*         <div class="form-group"> *@
+                        @*             <label>Salário</label> *@
+                        @*             <select asp-items="@ViewBag.AvailableCompanies" style="-webkit-appearance:none;" class="form-control"></select> *@
+                        @*         </div> *@
+                        @*     </div> *@
+                        @* </div> *@
                     </div>
                 </div>
             </div>

@@ -119,6 +119,7 @@
         </e>
         <e p="Interface" t="Include">
           <e p="ICompanyService.cs" t="Include" />
+          <e p="IEventService.cs" t="Include" />
           <e p="IJobOpportunityService.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
@@ -152,6 +153,7 @@
         <e p="Repository.csproj" t="IncludeRecursive" />
         <e p="Service" t="Include">
           <e p="CompanyService.cs" t="Include" />
+          <e p="EventService.cs" t="Include" />
           <e p="JobOpportunityService.cs" t="Include" />
         </e>
         <e p="TrabaIOContext.cs" t="Include" />
@@ -171,7 +173,7 @@
       <e p="WebApplication" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.Production.json" t="Include" />
-        <e p="appsettings.Stagging.json" t="Include" />
+        <e p="appsettings.Staging.json" t="Include" />
         <e p="Areas" t="Include">
           <e p="Admin" t="Include">
             <e p="Controllers" t="Include">
@@ -225,14 +227,17 @@
         </e>
         <e p="MapperProfiles" t="Include">
           <e p="CompanyProfile.cs" t="Include" />
+          <e p="JobOpportunityProfile.cs" t="Include" />
           <e p="UserProfile.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
+          <e p="CompanyPreviewViewModel.cs" t="Include" />
           <e p="CompanyViewModel.cs" t="Include" />
           <e p="CreateAccountViewModel.cs" t="Include" />
           <e p="ErrorViewModel.cs" t="Include" />
           <e p="ForgotPasswordViewModel.cs" t="Include" />
           <e p="JobOpportunityComponentModel.cs" t="Include" />
+          <e p="JobOpportunityViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
           <e p="RecoveryPasswordViewModel.cs" t="Include" />
           <e p="UserPreviewViewModel.cs" t="Include" />

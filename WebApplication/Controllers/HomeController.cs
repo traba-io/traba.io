@@ -51,6 +51,12 @@ namespace WebApplication.Controllers
             return View();
         }
         
+        [HttpGet("health/ping")]
+        public IActionResult Ping()
+        {
+            return Ok("pong");
+        }
+        
         [HttpGet("r/{eventUri}")]
         public async Task<IActionResult> Event(string eventUri)
         {

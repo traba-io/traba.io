@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http
+﻿@using Domain.Util
+@using Microsoft.AspNetCore.Http
 @using WebApplication.Controllers
 @using WebApplication.Extensions
 @{
@@ -218,7 +219,21 @@
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-        <b>Versão</b> @typeof(HomeController).Assembly.GetName().Version.ToString(3)
+        <b>Versão</b> @typeof(HomeController).Assembly.GetName().Version.ToString(3) 
+        @if (EnvironmentVariables.AspNetCoreEnvironment != "Production")
+        {
+            switch (EnvironmentVariables.AspNetCoreEnvironment)
+            {
+                case "Staging":
+                    <b>Homologação</b>
+                break;
+                case "Development":
+                    <b>Desenvolvimento</b>
+                break;
+                default:
+                break;
+            }
+        }
     </div>
     <strong>Copyright &copy; @DateTime.Now.Year <a href="/">traba.io</a>.</strong> Todos os direitos reservados.
 </footer>

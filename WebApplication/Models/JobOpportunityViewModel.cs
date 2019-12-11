@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
-using Domain.Abstract;
 
-namespace Domain.Entity
+namespace WebApplication.Models
 {
-    public class Event : BaseEntity
+    public class JobOpportunityViewModel
     {
         public string Title { get; set; }
         public string Excerpt { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
-        public virtual List<UserEvent> Users { get; set; }
+        public DateTime AvailableUntil { get; set; }
+        public long CompanyId { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 using System;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Util;
@@ -33,7 +35,7 @@ namespace WebApplication
 
         private IConfiguration Configuration { get; }
         
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
         {
             services.AddDbContext<TrabaIoContext>(options =>
             {
@@ -53,13 +55,20 @@ namespace WebApplication
             
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
+                if (env.IsStaging() || env.IsDevelopment())
+                {
+                    
+                }
+                else
+                {
+                    // Password settings.
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequiredUniqueChars = 1;
+                }
 
                 // Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -89,6 +98,10 @@ namespace WebApplication
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
         {
+            var ci = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

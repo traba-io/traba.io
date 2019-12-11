@@ -35,7 +35,7 @@ namespace WebApplication
 
         private IConfiguration Configuration { get; }
         
-        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TrabaIoContext>(options =>
             {
@@ -55,11 +55,7 @@ namespace WebApplication
             
             services.Configure<IdentityOptions>(options =>
             {
-                if (env.IsStaging() || env.IsDevelopment())
-                {
-                    
-                }
-                else
+                if (EnvironmentVariables.AspNetCoreEnvironment == "Production")
                 {
                     // Password settings.
                     options.Password.RequireDigit = true;

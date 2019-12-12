@@ -6,6 +6,7 @@ using AutoMapper;
 using Domain.Entity;
 using Infrastructure.Enum;
 using Infrastructure.Interface;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -110,6 +111,13 @@ namespace WebApplication.Controllers
             await _userManager.ConfirmEmailAsync(user, confirmAccountCode);
             ViewBag.Title = "Confirmar conta";
             return LocalRedirect(Url.Action("Login"));
+        }
+        
+        [HttpGet("sair")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
         
         [HttpPost("criar-conta")]

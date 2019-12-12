@@ -129,7 +129,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
-                            @if(!(Model.ProfilePicture is null))
+                            @if (!(Model?.ProfilePicture is null))
                             {
                                 <img src="@Model.ProfilePicture" class="img-circle img-thumbnail" alt="@Model.Name">
                             }
@@ -153,7 +153,7 @@
                         @if (!(Model is null))
                         {
                             <div class="card-tools">
-                                <a href="#">Novo Colaborador</a>
+                                <a href="javascript:void()" data-toggle="modal" data-target="#modalExemplo">Novo Colaborador</a>
                             </div>
                         }
                     </div>
@@ -169,6 +169,12 @@
                                         </div>
                                     </td>
                                     <td style="vertical-align: middle; text-align: justify">@user.Name</td>
+                                    <td style="vertical-align: middle; text-align: justify" width="10">
+                                        @if (!user.Owner)
+                                        {
+                                            <a href="javascript:void()">Remover</a>
+                                        }
+                                    </td>
                                 </tr>
                             }
                             </tbody>
@@ -216,3 +222,29 @@
         });
     </script>
 }
+
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar Colaborador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">Verificar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-outline-success" disabled>Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>

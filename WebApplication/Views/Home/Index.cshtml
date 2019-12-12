@@ -18,7 +18,7 @@
                 <div class="card-footer">
                     <a asp-action="Company" asp-route-companyNamespace="@job.Company.Namespace">
                         <small class="text-muted float-left">
-                            @if (!(job.Company.ProfilePicture is null))
+                            @if (!(job.Company?.ProfilePicture is null))
                             {
                                 <img src="@job.Company.ProfilePicture" class="img-circle" width="33" alt="@job.Company.Name">
                             }
@@ -41,8 +41,8 @@
                 LinkToFirstPageFormat = "Primeira",
                 LinkToNextPageFormat = "Próximo",
                 LinkToLastPageFormat = "Ultima",
-                LiElementClasses = new string[] {"page-item"},
-                PageClasses = new string[] {"page-link"}
+                LiElementClasses = new [] {"page-item"},
+                PageClasses = new [] {"page-link"}
             })
     </ul>
 </nav>

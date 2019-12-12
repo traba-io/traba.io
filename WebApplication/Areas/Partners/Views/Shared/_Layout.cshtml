@@ -39,6 +39,14 @@
         </li>
     </ul>
 
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </li>
+    </ul>
+
     <!-- Right navbar links -->
     @* <ul class="navbar-nav ml-auto"> *@
     @*     <!-- Messages Dropdown Menu --> *@
@@ -139,12 +147,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-        @* <img src="../../dist/img/AdminLTELogo.png" *@
-        @*      alt="AdminLTE Logo" *@
-        @*      class="brand-image img-circle elevation-3" *@
-        @*      style="opacity: .8"> *@
-        <span class="brand-text font-weight-light">traba.io</span>
+    <a href="/" class="brand-link logo-switch">
+        <img src="~/images/ico_white.png" alt="traba.io Logo" class="brand-image-xl logo-xs">
+        <img src="~/images/logo_white_300.png" alt="traba.io Logo" class="brand-image-xs logo-xl">
     </a>
 
     <!-- Sidebar -->
@@ -219,19 +224,19 @@
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-        <b>Versão</b> @typeof(HomeController).Assembly.GetName().Version.ToString(3) 
+        <b>Versão</b> @typeof(HomeController).Assembly.GetName().Version.ToString(3)
         @if (EnvironmentVariables.AspNetCoreEnvironment != "Production")
         {
             switch (EnvironmentVariables.AspNetCoreEnvironment)
             {
                 case "Staging":
                     <b>Homologação</b>
-                break;
+                    break;
                 case "Development":
                     <b>Desenvolvimento</b>
-                break;
+                    break;
                 default:
-                break;
+                    break;
             }
         }
     </div>

@@ -5,7 +5,7 @@ pipelines:
     master:
       - step:
           name: Development deploy
-          deployment: Stagging
+          deployment: Staging
           script:
             - git remote add dokku $DOKKU_STAGGING_HOST
             - git push dokku master

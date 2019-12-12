@@ -218,6 +218,7 @@
           </e>
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="bundleconfig.json" t="Include" />
         <e p="Controllers" t="Include">
           <e p="AboutController.cs" t="Include" />
           <e p="AccountController.cs" t="Include" />
@@ -299,6 +300,7 @@
             <e p="adminlte.min.css.map" t="Include" />
             <e p="footer.css" t="Include" />
             <e p="site.css" t="Include" />
+            <e p="site.min.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
@@ -311,6 +313,8 @@
             <e p="adminlte.min.js" t="Include" />
             <e p="adminlte.min.js.map" t="Include" />
             <e p="site.js" t="Include" />
+            <e p="site.min.js" t="Include" />
+            <e p="site.min.js.map" t="Include" />
           </e>
           <e p="lib" t="Include">
             <e p="bootstrap" t="Include">

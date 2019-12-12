@@ -49,17 +49,19 @@
             </table>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-right">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { pageIndex = page }), 
-                                    new PagedListRenderOptions {
-                                        LinkToPreviousPageFormat = "«",
-                                        LinkToNextPageFormat = "»",
-                                        LiElementClasses = new string[] { "page-item" },
-                                        PageClasses = new string[] { "page-link" }
-                                    })
-                    </ul>
-                </div>
+        <div class="card-footer clearfix" style="">
+            <span style="vertical-align: middle">Listando registros de @Model.FirstItemOnPage a @Model.LastItemOnPage de um total de @Model.TotalItemCount</span>
+            <ul class="pagination pagination-sm m-0 float-right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {pageIndex = page}),
+                    new PagedListRenderOptions
+                    {
+                        LinkToPreviousPageFormat = "Anterior",
+                        LinkToNextPageFormat = "Próximo",
+                        LiElementClasses = new string[] {"page-item"},
+                        PageClasses = new string[] {"page-link"}
+                    })
+            </ul>
+        </div>
         <!-- /.card-footer -->
     </div>
 </section>

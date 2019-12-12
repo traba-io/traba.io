@@ -31,11 +31,11 @@ namespace WebApplication.Areas.Partners.Controllers
             _fileUploader = fileUploader;
         }
 
-        public async Task<IActionResult> Index() 
+        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 10) 
         {
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.Title = "Empresas";
-            var companies = await _companyService.Get(actor);
+            var companies = await _companyService.Get(actor, pageIndex, pageLimit);
             return View(companies);
         }
 

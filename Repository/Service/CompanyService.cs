@@ -8,17 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Abstract;
 using Repository.Extensions;
 using Repository.Interface;
+using X.PagedList;
 
 namespace Repository.Service
 {
     public class CompanyService : BaseService<Company>, ICompanyService
     {
         public CompanyService(TrabaIoContext context) : base(context) { }
-        public Task<List<Company>> Get(int pageIndex = 1, int pageLimit = 10) => Context.Companies.ToListAsync();
 
-        public Task<List<Company>> Get(User user, int pageIndex = 1, int pageLimit = 10) => Context.Companies
+        public Task<IPagedList<Company>> Get(int pageIndex = 1, int pageLimit = 10) =>
+            Context.Companies.ToPagedListAsync(pageIndex, pageLimit);
+
+        public Task<IPagedList<Company>> Get(User user, int pageIndex = 1, int pageLimit = 10) => Context.Companies
             .Where(c => c.Users.Any(u => u.UserId == user.Id)).OrderByDescending(jo => jo.CreatedDate)
-            .Skip(pageLimit * (pageIndex - 1)).Take(pageLimit).ToListAsync();
+            .ToPagedListAsync(pageIndex, pageLimit);
         
         public Task<Company> Get(string uri) => Context.Companies.FirstOrDefaultAsync(c => c.Namespace == uri);
         public Task<Company> Get(long id) => Context.Companies.FirstOrDefaultAsync(c => c.Id == id);

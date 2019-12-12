@@ -34,10 +34,15 @@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { pageIndex = page }), 
-            new PagedListRenderOptions {
-                LiElementClasses = new string[] { "page-item" },
-                PageClasses = new string[] { "page-link" }
+        @Html.PagedListPager(Model, page => Url.Action("Index", new {pageIndex = page}),
+            new PagedListRenderOptions
+            {
+                LinkToPreviousPageFormat = "Anterior",
+                LinkToFirstPageFormat = "Primeira",
+                LinkToNextPageFormat = "Próximo",
+                LinkToLastPageFormat = "Ultima",
+                LiElementClasses = new string[] {"page-item"},
+                PageClasses = new string[] {"page-link"}
             })
     </ul>
 </nav>

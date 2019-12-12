@@ -23,13 +23,13 @@
 
 <!-- Main content -->
 <section class="content">
-    <!-- Default box -->
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <form id="newCompanyForm" role="form" method="post">
+    <form id="newCompanyForm" enctype="multipart/form-data" role="form" method="post">
+        <!-- Default box -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-sm-4">
                                 <!-- text input -->
@@ -112,40 +112,55 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer clearfix">
-                    <a asp-area="Partners" asp-action="Index" class="btn btn-outline-primary">
-                        Voltar
-                    </a>
-                    <button type="submit" class="btn btn-primary" form="newCompanyForm">
-                        Cadastrar
-                    </button>
-                </div>
-                <!-- /.card-footer -->
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <a asp-area="Partners" asp-action="Index" class="btn btn-outline-primary">
+                            Voltar
+                        </a>
+                        <button type="submit" class="btn btn-primary" form="newCompanyForm">
+                            Cadastrar
+                        </button>
+                    </div>
+                    <!-- /.card-footer -->
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header border-0">
-                    <h3 class="card-title">Colaboradores</h3>
-                    @if (!(Model is null))
-                    {
-                        <div class="card-tools">
-                            <a href="#">Novo Colaborador</a>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            @if (!(Model?.ProfilePicture is null))
+                            {
+                                <img src="@Model.ProfilePicture" class="img-circle img-thumbnail" alt="@Model.Name">
+                            }
                         </div>
-                    }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Perfil</label>
+                                    <div class="custom-file">
+                                        <input type="file" asp-for="ProfilePictureUpload" class="custom-file-input">
+                                        <label class="custom-file-label">Escolha um arquivo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body p-0">
-                    <table class="table table-hover">
-                        <tbody>
-                            @foreach(var user in @Model?.Users ?? Enumerable.Empty<UserPreviewViewModel>())
+                <div class="card">
+                    <div class="card-header border-0">
+                        <h3 class="card-title">Colaboradores</h3>
+                        @if (!(Model is null))
+                        {
+                            <div class="card-tools">
+                                <a href="javascript:void()" data-toggle="modal" data-target="#modalExemplo">Novo Colaborador</a>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-hover">
+                            <tbody>
+                            @foreach (var user in Model?.Users ?? Enumerable.Empty<UserPreviewViewModel>())
                             {
                                 <tr>
                                     <td width="40">
@@ -154,18 +169,25 @@
                                         </div>
                                     </td>
                                     <td style="vertical-align: middle; text-align: justify">@user.Name</td>
+                                    <td style="vertical-align: middle; text-align: justify" width="10">
+                                        @if (!user.Owner)
+                                        {
+                                            <a href="javascript:void()">Remover</a>
+                                        }
+                                    </td>
                                 </tr>
                             }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 <!-- /.content -->
 
-@section Scripts 
+@section Scripts
 {
     <script src="~/plugins/jquery.inputmask.min.js"></script>
     <script src="~/lib/summernote/summernote-bs4.min.js"></script>
@@ -200,3 +222,29 @@
         });
     </script>
 }
+
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar Colaborador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">Verificar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-outline-success" disabled>Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>

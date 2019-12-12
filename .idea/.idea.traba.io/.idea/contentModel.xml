@@ -141,6 +141,8 @@
           <e p="20191209133455_AddedCompanyPhone.Designer.cs" t="Include" />
           <e p="20191210184925_AddedEventsToDatabase.cs" t="Include" />
           <e p="20191210184925_AddedEventsToDatabase.Designer.cs" t="Include" />
+          <e p="20191211185241_AddedProfilePicturesToCompany.cs" t="Include" />
+          <e p="20191211185241_AddedProfilePicturesToCompany.Designer.cs" t="Include" />
           <e p="TrabaIoContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -299,6 +301,12 @@
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
+          <e p="images" t="Include">
+            <e p="ico_white.png" t="Include" />
+            <e p="logo_300.png" t="Include" />
+            <e p="logo_full.png" t="Include" />
+            <e p="logo_white_300.png" t="Include" />
+          </e>
           <e p="js" t="Include">
             <e p="adminlte.min.js" t="Include" />
             <e p="adminlte.min.js.map" t="Include" />

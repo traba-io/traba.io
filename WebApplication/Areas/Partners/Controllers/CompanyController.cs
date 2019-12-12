@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,9 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query;
-using Org.BouncyCastle.Bcpg.OpenPgp;
-using Repository.Extensions;
 using Repository.Interface;
 using WebApplication.Models;
 
@@ -35,11 +31,11 @@ namespace WebApplication.Areas.Partners.Controllers
             _fileUploader = fileUploader;
         }
 
-        public async Task<IActionResult> Index() 
+        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 10) 
         {
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.Title = "Empresas";
-            var companies = await _companyService.Get(actor);
+            var companies = await _companyService.Get(actor, pageIndex, pageLimit);
             return View(companies);
         }
 
@@ -55,6 +51,15 @@ namespace WebApplication.Areas.Partners.Controllers
         {
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             var company = _mapper.Map<Company>(viewModel);
+
+            if (viewModel.ProfilePictureUpload != null)
+            {
+                await using var fileMemoryStream = new MemoryStream();
+                viewModel.ProfilePictureUpload.CopyTo(fileMemoryStream);
+                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
+                company.ProfilePicture = await _fileUploader.Upload(fileMemoryStream, fileName);
+            }
+
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }
@@ -74,6 +79,15 @@ namespace WebApplication.Areas.Partners.Controllers
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             var company = _mapper.Map<Company>(viewModel);
             company.Id = id;
+            
+            if (viewModel.ProfilePictureUpload != null)
+            {
+                await using var fileMemoryStream = new MemoryStream();
+                viewModel.ProfilePictureUpload.CopyTo(fileMemoryStream);
+                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
+                company.ProfilePicture = await _fileUploader.Upload(fileMemoryStream, fileName);
+            }
+            
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }

@@ -1,4 +1,4 @@
-@model List<Domain.Entity.JobOpportunity>
+@model IPagedList<Domain.Entity.JobOpportunity>
 
 @{
     Layout = "_Layout";
@@ -49,25 +49,19 @@
             </table>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-right">
-                        <li class="page-item">
-                            <a class="page-link" href="#">«</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">»</a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="card-footer clearfix" style="">
+            <span style="vertical-align: middle">Listando registros de @Model.FirstItemOnPage a @Model.LastItemOnPage de um total de @Model.TotalItemCount</span>
+            <ul class="pagination pagination-sm m-0 float-right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {pageIndex = page}),
+                    new PagedListRenderOptions
+                    {
+                        LinkToPreviousPageFormat = "Anterior",
+                        LinkToNextPageFormat = "Próximo",
+                        LiElementClasses = new string[] {"page-item"},
+                        PageClasses = new string[] {"page-link"}
+                    })
+            </ul>
+        </div>
         <!-- /.card-footer -->
     </div>
 </section>

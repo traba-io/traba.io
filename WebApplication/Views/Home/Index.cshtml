@@ -1,4 +1,6 @@
-﻿@model List<Domain.Entity.JobOpportunity>
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Common
+@model X.PagedList.IPagedList<Domain.Entity.JobOpportunity>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -15,7 +17,13 @@
                 </div>
                 <div class="card-footer">
                     <a asp-action="Company" asp-route-companyNamespace="@job.Company.Namespace">
-                        <small class="text-muted float-left">@job.Company.Name</small>
+                        <small class="text-muted float-left">
+                            @if (!(job.Company?.ProfilePicture is null))
+                            {
+                                <img src="@job.Company.ProfilePicture" class="img-circle" width="33" alt="@job.Company.Name">
+                            }
+                            @job.Company.Name
+                        </small>
                     </a>
                     <small class="text-muted float-right">@job.CreatedDate</small>
                 </div>
@@ -26,20 +34,15 @@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">Proximo</a>
-        </li>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new {pageIndex = page}),
+            new PagedListRenderOptions
+            {
+                LinkToPreviousPageFormat = "Anterior",
+                LinkToFirstPageFormat = "Primeira",
+                LinkToNextPageFormat = "Próximo",
+                LinkToLastPageFormat = "Ultima",
+                LiElementClasses = new [] {"page-item"},
+                PageClasses = new [] {"page-link"}
+            })
     </ul>
 </nav>

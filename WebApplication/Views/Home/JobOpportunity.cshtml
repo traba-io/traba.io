@@ -2,7 +2,7 @@
 @model Domain.Entity.JobOpportunity
 @{
     ViewData["Title"] = Model.Title;
-    var companyDescription = Regex.Replace(Model.Company.Description, "<.*?>", string.Empty);
+    var companyDescription = Regex.Replace(Model.Company.Description ?? string.Empty, "<.*?>", string.Empty);
 }
 
 @section Styles
@@ -56,8 +56,8 @@
                         <div class="row">
                             <div class="col-lg align-self-end">
                                 <div class="form-group">
-                                    <img class="movimg" src="~/images/loogo01.png"><br>
-                                    <div class="form-field text-center">
+                                    <img class="movimg rounded" style="max-width: 100%; max-height: 100%; padding: 0;" src="@Model.Company.ProfilePicture"><br>
+                                    <div class="form-field text-center" style="padding: 50px 0 0;">
                                         <p class="movspace">@companyDescription.Substring(0, companyDescription.Length > 137 ? 137 : companyDescription.Length)</p>
                                         <div class="movspace form-field">
                                             <a asp-action="Company" asp-route-companyNamespace="@Model.Company.Namespace" class="buttonem">Conhecer Empresa</a>

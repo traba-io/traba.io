@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Mada:200,300,400,500,600,700,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a0a804d810.js" crossorigin="anonymous"></script>
 
-    <environment exclude="Development">
+    <environment include="Development">
         <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css">
         <link rel="stylesheet" href="~/css/animate.css">
         <link rel="stylesheet" href="~/css/owl.carousel.min.css">
@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="~/css/flaticon.css">
         <link rel="stylesheet" href="~/css/icomoon.css">
     </environment>
-    <environment include="Development">
+    <environment exclude="Development">
         <link rel="stylesheet" href="~/css/main.min.css">
     </environment>
 
@@ -200,7 +200,7 @@
 </footer>
 
 <!-- FINAL Footer -->
-<environment exclude="Development">
+<environment include="Development">
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="~/js/popper.min.js"></script>
@@ -217,7 +217,7 @@
     <script src="~/js/main.js"></script>
 </environment>
 
-<environment include="Development">
+<environment exclude="Development">
     <script src="~/js/main.min.js"></script>
 </environment>
 

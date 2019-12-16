@@ -5,7 +5,13 @@
 
 @section Styles
 {
-    <link rel="stylesheet" href="~/css/style.css">
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/style.css">
+    </environment>
+    
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/style.min.css">
+    </environment>
 }
 
 <!-- INICIO banner -->
@@ -105,7 +111,8 @@
             @foreach (var job in @Model)
             {
                 <div class="col-md-3 elemente">
-                    <p class="elementex">@job.Company.Name<br>
+                    <p class="elementex">
+                        @job.Company.Name<br>
                         <a asp-action="JobOpportunity" asp-route-companyNamespace="@job.Company.Namespace" asp-route-jobOpportunityUri="@job.Uri">@job.Title</a><br>
                         <span>
                             <i class="fas fa-map-marker"></i> Fortaleza - CE<br>

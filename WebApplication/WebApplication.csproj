@@ -28,4 +28,11 @@
       <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Partners\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Company\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Components\JobOpportunity.cshtml" />
+    </ItemGroup>
+
 </Project>

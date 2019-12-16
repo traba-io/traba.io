@@ -5,7 +5,13 @@
 
 @section Styles
 {
-    <link rel="stylesheet" href="~/css/style2.css">
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/style2.css">
+    </environment>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/style2.min.css">
+    </environment>
 }
 
 <!-- INICIO Banner -->
@@ -63,7 +69,7 @@
                         {
                             LinkToPreviousPageFormat = "<i class='fas fa-chevron-left'></i>",
                             LinkToNextPageFormat = "<i class='fas fa-chevron-right'></i>",
-                            UlElementClasses = new string[]{},
+                            UlElementClasses = new string[] {},
                         })
                 </div>
             </div>

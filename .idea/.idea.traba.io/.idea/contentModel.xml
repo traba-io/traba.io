@@ -222,7 +222,6 @@
         <e p="Controllers" t="Include">
           <e p="AboutController.cs" t="Include" />
           <e p="AccountController.cs" t="Include" />
-          <e p="CompanyController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
@@ -269,12 +268,6 @@
             <e p="Login.cshtml" t="Include" />
             <e p="RecoveryPassword.cshtml" t="Include" />
           </e>
-          <e p="Company" t="Include">
-            <e p="Index.cshtml" t="Include" />
-          </e>
-          <e p="Components" t="Include">
-            <e p="JobOpportunity.cshtml" t="Include" />
-          </e>
           <e p="Home" t="Include">
             <e p="Companies.cshtml" t="Include" />
             <e p="Company.cshtml" t="Include" />
@@ -283,9 +276,6 @@
             <e p="Index.cshtml" t="Include" />
             <e p="JobOpportunities.cshtml" t="Include" />
             <e p="JobOpportunity.cshtml" t="Include" />
-          </e>
-          <e p="Partners" t="Include">
-            <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />
@@ -319,12 +309,14 @@
             <e p="ionicons.min.css" t="Include" />
             <e p="jquery.timepicker.css" t="Include" />
             <e p="magnific-popup.css" t="Include" />
+            <e p="main.min.css" t="Include" />
             <e p="open-iconic-bootstrap.min.css" t="Include" />
             <e p="owl.carousel.min.css" t="Include" />
             <e p="owl.theme.default.min.css" t="Include" />
-            <e p="site.min.css" t="Include" />
             <e p="style.css" t="Include" />
+            <e p="style.min.css" t="Include" />
             <e p="style2.css" t="Include" />
+            <e p="style2.min.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
@@ -370,6 +362,7 @@
             <e p="jquery.stellar.min.js" t="Include" />
             <e p="jquery.waypoints.min.js" t="Include" />
             <e p="main.js" t="Include" />
+            <e p="main.min.js" t="Include" />
             <e p="owl.carousel.min.js" t="Include" />
             <e p="popper.min.js" t="Include" />
             <e p="range.js" t="Include" />

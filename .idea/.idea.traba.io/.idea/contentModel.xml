@@ -35,6 +35,7 @@
         <e p="Enum" t="Include">
           <e p="CouponState.cs" t="Include" />
           <e p="CouponType.cs" t="Include" />
+          <e p="FeatureManagement.cs" t="Include" />
           <e p="JobOpportunityStatus.cs" t="Include" />
           <e p="OrderStatus.cs" t="Include" />
         </e>
@@ -119,6 +120,7 @@
         </e>
         <e p="Interface" t="Include">
           <e p="ICompanyService.cs" t="Include" />
+          <e p="IDashboardService.cs" t="Include" />
           <e p="IEventService.cs" t="Include" />
           <e p="IJobOpportunityService.cs" t="Include" />
         </e>
@@ -222,7 +224,6 @@
         <e p="Controllers" t="Include">
           <e p="AboutController.cs" t="Include" />
           <e p="AccountController.cs" t="Include" />
-          <e p="CompanyController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
@@ -269,22 +270,14 @@
             <e p="Login.cshtml" t="Include" />
             <e p="RecoveryPassword.cshtml" t="Include" />
           </e>
-          <e p="Company" t="Include">
-            <e p="Index.cshtml" t="Include" />
-          </e>
-          <e p="Components" t="Include">
-            <e p="JobOpportunity.cshtml" t="Include" />
-          </e>
           <e p="Home" t="Include">
             <e p="Companies.cshtml" t="Include" />
             <e p="Company.cshtml" t="Include" />
             <e p="Event.cshtml" t="Include" />
             <e p="Events.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="JobOpportunities.cshtml" t="Include" />
             <e p="JobOpportunity.cshtml" t="Include" />
-          </e>
-          <e p="Partners" t="Include">
-            <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />
@@ -298,20 +291,84 @@
           <e p="css" t="Include">
             <e p="adminlte.min.css" t="Include" />
             <e p="adminlte.min.css.map" t="Include" />
+            <e p="animate.css" t="Include" />
+            <e p="aos.css" t="Include" />
+            <e p="bootstrap" t="Include">
+              <e p="bootstrap-grid.css" t="Include" />
+              <e p="bootstrap-reboot.css" t="Include" />
+            </e>
+            <e p="bootstrap-datepicker.css" t="Include" />
+            <e p="bootstrap.min.css" t="Include" />
+            <e p="css" t="Include">
+              <e p="bootstrap-reboot.css" t="Include" />
+              <e p="mixins" t="Include">
+                <e p="_text-hide.css" t="Include" />
+              </e>
+            </e>
+            <e p="flaticon.css" t="Include" />
             <e p="footer.css" t="Include" />
-            <e p="site.css" t="Include" />
-            <e p="site.min.css" t="Include" />
+            <e p="icomoon.css" t="Include" />
+            <e p="ionicons.min.css" t="Include" />
+            <e p="jquery.timepicker.css" t="Include" />
+            <e p="magnific-popup.css" t="Include" />
+            <e p="main.min.css" t="Include" />
+            <e p="open-iconic-bootstrap.min.css" t="Include" />
+            <e p="owl.carousel.min.css" t="Include" />
+            <e p="owl.theme.default.min.css" t="Include" />
+            <e p="style.css" t="Include" />
+            <e p="style.min.css" t="Include" />
+            <e p="style2.css" t="Include" />
+            <e p="style2.min.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="images" t="Include">
+            <e p="01.jpg" t="Include" />
+            <e p="02.jpg" t="Include" />
+            <e p="03.jpg" t="Include" />
+            <e p="04.jpg" t="Include" />
+            <e p="05.jpg" t="Include" />
+            <e p="06.jpg" t="Include" />
+            <e p="about-1.jpg" t="Include" />
+            <e p="about-2.jpg" t="Include" />
+            <e p="about-3.jpg" t="Include" />
+            <e p="emp01.png" t="Include" />
+            <e p="Frame.png" t="Include" />
             <e p="ico_white.png" t="Include" />
+            <e p="icon.png" t="Include" />
+            <e p="img01.png" t="Include" />
+            <e p="img02.png" t="Include" />
+            <e p="img03.png" t="Include" />
+            <e p="img04.png" t="Include" />
+            <e p="logo.png" t="Include" />
+            <e p="logo2.png" t="Include" />
             <e p="logo_300.png" t="Include" />
             <e p="logo_full.png" t="Include" />
             <e p="logo_white_300.png" t="Include" />
+            <e p="loogo01.png" t="Include" />
+            <e p="seta.png" t="Include" />
+            <e p="setabranca.png" t="Include" />
           </e>
           <e p="js" t="Include">
             <e p="adminlte.min.js" t="Include" />
             <e p="adminlte.min.js.map" t="Include" />
+            <e p="aos.js" t="Include" />
+            <e p="bootstrap-datepicker.js" t="Include" />
+            <e p="bootstrap.min.js" t="Include" />
+            <e p="google-map.js" t="Include" />
+            <e p="jquery-3.2.1.min.js" t="Include" />
+            <e p="jquery-migrate-3.0.1.min.js" t="Include" />
+            <e p="jquery.animateNumber.min.js" t="Include" />
+            <e p="jquery.easing.1.3.js" t="Include" />
+            <e p="jquery.magnific-popup.min.js" t="Include" />
+            <e p="jquery.min.js" t="Include" />
+            <e p="jquery.stellar.min.js" t="Include" />
+            <e p="jquery.waypoints.min.js" t="Include" />
+            <e p="main.js" t="Include" />
+            <e p="main.min.js" t="Include" />
+            <e p="owl.carousel.min.js" t="Include" />
+            <e p="popper.min.js" t="Include" />
+            <e p="range.js" t="Include" />
+            <e p="scrollax.min.js" t="Include" />
             <e p="site.js" t="Include" />
             <e p="site.min.js" t="Include" />
             <e p="site.min.js.map" t="Include" />

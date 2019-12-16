@@ -26,6 +26,14 @@
       <PackageReference Include="AutoMapper" Version="9.0.0" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" />
+      <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.0.0-preview-010610001-1263" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Partners\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Company\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Components\JobOpportunity.cshtml" />
     </ItemGroup>
 
 </Project>

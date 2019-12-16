@@ -11,7 +11,7 @@ namespace Repository.Service
         public EventService(TrabaIoContext context) : base(context)
         {
         }
-        
+
         public Task<List<Event>> Get(int pageIndex = 1, int pageLimit = 10)
         {
             throw new System.NotImplementedException();
@@ -21,6 +21,8 @@ namespace Repository.Service
         {
             throw new System.NotImplementedException();
         }
+
+        public Task<int> Count(User user) => throw new System.NotImplementedException();
 
         public Task<Event> Get(string uri)
         {

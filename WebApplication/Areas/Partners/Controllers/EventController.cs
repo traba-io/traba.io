@@ -1,11 +1,14 @@
+using Domain.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.FeatureManagement.Mvc;
 
 namespace WebApplication.Areas.Partners.Controllers
 {
     [Authorize]
     [Area("Partners")]
     [Route("parceiros/eventos")]
+    [FeatureGate(FeatureManagement.Event)]
     public class EventController : Controller
     {
         public IActionResult Index()

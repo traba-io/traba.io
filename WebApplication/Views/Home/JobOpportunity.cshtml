@@ -1,6 +1,8 @@
+@using System.Text.RegularExpressions
 @model Domain.Entity.JobOpportunity
 @{
     ViewData["Title"] = Model.Title;
+    var companyDescription = Regex.Replace(Model.Company.Description, "<.*?>", string.Empty);
 }
 
 @section Styles
@@ -50,7 +52,7 @@
                                 <div class="form-group">
                                     <img class="movimg" src="~/images/loogo01.png"><br>
                                     <div class="form-field text-center">
-                                        <p class="movspace">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                                        <p class="movspace">@companyDescription.Substring(0, companyDescription.Length > 137 ? 137 : companyDescription.Length)</p>
                                         <div class="movspace form-field">
                                             <a asp-action="Company" asp-route-companyNamespace="@Model.Company.Namespace" class="buttonem">Conhecer Empresa</a>
                                         </div>

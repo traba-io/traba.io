@@ -35,6 +35,7 @@
         <e p="Enum" t="Include">
           <e p="CouponState.cs" t="Include" />
           <e p="CouponType.cs" t="Include" />
+          <e p="FeatureManagement.cs" t="Include" />
           <e p="JobOpportunityStatus.cs" t="Include" />
           <e p="OrderStatus.cs" t="Include" />
         </e>
@@ -119,6 +120,7 @@
         </e>
         <e p="Interface" t="Include">
           <e p="ICompanyService.cs" t="Include" />
+          <e p="IDashboardService.cs" t="Include" />
           <e p="IEventService.cs" t="Include" />
           <e p="IJobOpportunityService.cs" t="Include" />
         </e>

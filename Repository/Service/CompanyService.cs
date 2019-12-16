@@ -22,7 +22,9 @@ namespace Repository.Service
         public Task<IPagedList<Company>> Get(User user, int pageIndex = 1, int pageLimit = 10) => Context.Companies
             .Where(c => c.Users.Any(u => u.UserId == user.Id)).OrderByDescending(jo => jo.CreatedDate)
             .ToPagedListAsync(pageIndex, pageLimit);
-        
+
+        public Task<int> Count(User user) => throw new NotImplementedException();
+
         public Task<Company> Get(string uri) => Context.Companies.FirstOrDefaultAsync(c => c.Namespace == uri);
         public Task<Company> Get(long id) => Context.Companies.FirstOrDefaultAsync(c => c.Id == id);
 

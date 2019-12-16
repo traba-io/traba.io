@@ -27,6 +27,17 @@ namespace Repository.Service
             return (await result.ToPagedListAsync(pageIndex, pageLimit));
         }
 
+        public async Task<int> Count(User user)
+        {
+            var result = from jo in Context.JobOpportunities
+                join c in Context.Companies on jo.CompanyId equals c.Id
+                join uc in Context.UserCompanies on c.Id equals uc.CompanyId
+                where uc.UserId == user.Id
+                select jo;
+
+            return (await result.CountAsync());
+        }
+
         public Task<IPagedList<JobOpportunity>> Get(Company company, int pageIndex = 1, int pageLimit = 10) =>
             Context.JobOpportunities.Where(jo => jo.CompanyId == company.Id).ToPagedListAsync(pageIndex, pageLimit);
 

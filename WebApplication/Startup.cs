@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 using Repository;
 using Repository.Interface;
 using Repository.Service;
@@ -43,6 +44,8 @@ namespace WebApplication
                     .UseLazyLoadingProxies()
                     .UseNpgsql(EnvironmentVariables.DatabaseUrl);
             });
+
+            services.AddFeatureManagement();
             
             services.AddIdentity<User, IdentityRole>(opts => { opts.SignIn.RequireConfirmedEmail = true; })
                 .AddEntityFrameworkStores<TrabaIoContext>().AddDefaultTokenProviders();

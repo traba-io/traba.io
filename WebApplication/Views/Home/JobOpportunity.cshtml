@@ -2,7 +2,7 @@
 @model Domain.Entity.JobOpportunity
 @{
     ViewData["Title"] = Model.Title;
-    var companyDescription = Regex.Replace(Model.Company.Description, "<.*?>", string.Empty);
+    var companyDescription = Regex.Replace(Model.Company.Description ?? string.Empty, "<.*?>", string.Empty);
 }
 
 @section Styles

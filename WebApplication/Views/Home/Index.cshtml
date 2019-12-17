@@ -110,7 +110,7 @@
         <div class="row">
             @foreach (var job in @Model)
             {
-                <div class="col-md-3 elemente">
+                <div class="col-md-4 elemente">
                     <p class="elementex">
                         @job.Company.Name<br>
                         <a asp-action="JobOpportunity" asp-route-companyNamespace="@job.Company.Namespace" asp-route-jobOpportunityUri="@job.Uri">@job.Title</a><br>

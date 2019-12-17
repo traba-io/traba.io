@@ -128,10 +128,11 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
+                        <input type="hidden" asp-for="ProfilePicture" />
                         <div class="text-center">
                             @if (!(Model?.ProfilePicture is null))
                             {
-                                <img src="@Model.ProfilePicture" class="img-circle img-thumbnail" alt="@Model.Name">
+                                <img src="@Model.ProfilePicture" class="rounded img-thumbnail" alt="@Model.Name">
                             }
                         </div>
                         <div class="row">

@@ -84,7 +84,7 @@ namespace WebApplication
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromHours(5);
 
                 options.LoginPath = "/conta/entrar";
                 options.SlidingExpiration = true;

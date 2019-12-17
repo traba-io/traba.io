@@ -47,7 +47,7 @@ namespace WebApplication
 
             services.AddFeatureManagement();
             
-            services.AddIdentity<User, IdentityRole>(opts => { opts.SignIn.RequireConfirmedEmail = true; })
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TrabaIoContext>().AddDefaultTokenProviders();
             
             services.AddScoped<IJobOpportunityService, JobOpportunityService>();
@@ -72,6 +72,7 @@ namespace WebApplication
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
                     options.Lockout.MaxFailedAccessAttempts = 5;
                     options.Lockout.AllowedForNewUsers = true;
+                    options.SignIn.RequireConfirmedEmail = true;
                 }
 
                 // User settings.

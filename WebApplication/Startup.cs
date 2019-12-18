@@ -72,6 +72,8 @@ namespace WebApplication
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
                     options.Lockout.MaxFailedAccessAttempts = 5;
                     options.Lockout.AllowedForNewUsers = true;
+                    
+                    // SignIn settings.
                     options.SignIn.RequireConfirmedEmail = true;
                 }
 

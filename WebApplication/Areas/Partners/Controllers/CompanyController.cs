@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Entity;
@@ -90,6 +91,23 @@ namespace WebApplication.Areas.Partners.Controllers
             
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
+        }
+        
+        [HttpGet("colaborador/{email}")]
+        public async Task<IActionResult> CheckUserCompany(string email)
+        {
+            email = Encoding.UTF8.GetString(Convert.FromBase64String(email));
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+                return NotFound();
+            
+            return Ok();
+        }
+
+        [HttpPost("colaborador")]
+        public async Task<IActionResult> AddUserCompany(UserCompanyViewModel viewModel)
+        {
+            return Ok();
         }
         
         [HttpPost("upload")]

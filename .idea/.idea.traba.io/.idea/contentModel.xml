@@ -244,6 +244,7 @@
           <e p="JobOpportunityViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
           <e p="RecoveryPasswordViewModel.cs" t="Include" />
+          <e p="UserCompanyViewModel.cs" t="Include" />
           <e p="UserPreviewViewModel.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">

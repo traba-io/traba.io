@@ -128,7 +128,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <input type="hidden" asp-for="ProfilePicture" />
+                        <input type="hidden" asp-for="ProfilePicture"/>
                         <div class="text-center">
                             @if (!(Model?.ProfilePicture is null))
                             {
@@ -235,12 +235,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button">Verificar</button>
+                <form>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button">
+                                Verificar
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

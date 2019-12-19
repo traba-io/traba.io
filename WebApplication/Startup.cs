@@ -1,7 +1,9 @@
 using System;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using App.Metrics;
 using App.Metrics.Reporting.Graphite.Client;
 using AutoMapper;
@@ -97,13 +99,17 @@ namespace WebApplication
             });
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
-            
-            var metrics = AppMetrics.CreateDefaultBuilder().Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5)).Build();
+
+            var metrics = new MetricsBuilder()
+                .Report.ToTextFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "metrics.txt"),TimeSpan.FromSeconds(5))
+//                .Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5))
+                .Build();
+
+            services.AddSingleton(metrics);
 
             services.AddMetrics(metrics);
             services.AddMetricsTrackingMiddleware();
-
-            services.AddMvc(option => option.EnableEndpointRouting = false).AddMetrics();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
@@ -112,8 +118,8 @@ namespace WebApplication
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 
-            app.UseMetricsAllMiddleware();
-            
+            app.UseMetricsRequestTrackingMiddleware();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

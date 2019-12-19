@@ -2,6 +2,8 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Threading;
+using App.Metrics;
+using App.Metrics.Reporting.Graphite.Client;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Util;
@@ -10,6 +12,7 @@ using Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -94,8 +97,22 @@ namespace WebApplication
             });
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
+            
+            var metrics = AppMetrics.CreateDefaultBuilder().Report.ToGraphite(opts =>
+                {
+                    opts.Graphite.BaseUri = new Uri(EnvironmentVariables.StatsdUrl);
+                    
+                    opts.ClientPolicy.BackoffPeriod = TimeSpan.FromSeconds(30);
+                    opts.ClientPolicy.FailuresBeforeBackoff = 5;
+                    opts.ClientPolicy.Timeout = TimeSpan.FromSeconds(10);
+                    
+                    opts.FlushInterval = TimeSpan.FromSeconds(5);
+                }).Build();
 
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMetrics(metrics);
+            services.AddMetricsTrackingMiddleware();
+
+            services.AddMvc(option => option.EnableEndpointRouting = false).AddMetrics();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
@@ -103,6 +120,8 @@ namespace WebApplication
             var ci = new CultureInfo("pt-BR");
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+
+            app.UseMetricsAllMiddleware();
             
             if (env.IsDevelopment())
             {

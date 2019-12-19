@@ -98,16 +98,7 @@ namespace WebApplication
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
             
-            var metrics = AppMetrics.CreateDefaultBuilder().Report.ToGraphite(opts =>
-                {
-                    opts.Graphite.BaseUri = new Uri(EnvironmentVariables.StatsdUrl);
-                    
-                    opts.ClientPolicy.BackoffPeriod = TimeSpan.FromSeconds(30);
-                    opts.ClientPolicy.FailuresBeforeBackoff = 5;
-                    opts.ClientPolicy.Timeout = TimeSpan.FromSeconds(10);
-                    
-                    opts.FlushInterval = TimeSpan.FromSeconds(5);
-                }).Build();
+            var metrics = AppMetrics.CreateDefaultBuilder().Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5)).Build();
 
             services.AddMetrics(metrics);
             services.AddMetricsTrackingMiddleware();

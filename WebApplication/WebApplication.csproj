@@ -34,6 +34,7 @@
       <_ContentIncludedByDefault Remove="Views\Partners\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Company\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Components\JobOpportunity.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Partners\Views\Partials\JobOpportunityCard.cshtml" />
     </ItemGroup>
 
 </Project>

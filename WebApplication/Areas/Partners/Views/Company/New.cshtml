@@ -188,6 +188,8 @@
 </section>
 <!-- /.content -->
 
+@Html.Partial("UserCompanyModal", @Model.UserCompanyViewModel, ViewData)
+
 @section Scripts
 {
     <script src="~/plugins/jquery.inputmask.min.js"></script>
@@ -196,17 +198,42 @@
     <script >
         $(document).ready(function(){
             $(":input").inputmask();
+            
             $('#Description').summernote({
                 height: 200,
                 callbacks: {
-                    onImageUpload: function(files, editor, welEditable){
+                    onImageUpload: function(files){
                         sendFile(files[0], this);
                     }
                 }
             });
             
+            const btn = $('#verifyEmailBtn');
+            const addBtn = $('#addUserCompanyButton');
+            const emailField = $('#CollaboratorEmail');
+            const emailFieldError = $('#searchUserError');
+            btn.on('click', function() {
+              emailField.removeClass('is-valid');
+              emailField.removeClass('is-invalid');
+              addBtn.attr('disabled', true);
+              $.ajax(`/parceiros/empresas/colaborador/${@Model.Id}/${btoa(emailField.val())}`)
+              .then(r => {
+                  emailField.addClass('is-valid');
+                  addBtn.attr('disabled', false);
+              })
+              .catch(e => {
+                  emailField.addClass('is-invalid');
+                  if(e.status === 400){
+                    emailFieldError.html(e.responseJSON.message);   
+                  }else if (e.status === 404){
+                    emailFieldError.html('Não foi encontrado.');  
+                  }
+                  addBtn.attr('disabled', true);
+              })
+            });
+            
             function sendFile(file, el) {
-                data = new FormData();
+                const data = new FormData();
                 data.append("file", file);
                 $.ajax({
                     data: data,
@@ -223,33 +250,3 @@
         });
     </script>
 }
-
-<!-- Modal -->
-<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Adicionar Colaborador</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="button">
-                                Verificar
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-outline-success" disabled>Adicionar</button>
-            </div>
-        </div>
-    </div>
-</div>

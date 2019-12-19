@@ -24,7 +24,8 @@ namespace WebApplication.Areas.Partners.Controllers
         private readonly IFileUploaderService _fileUploader;
         private readonly UserManager<User> _userManager;
 
-        public CompanyController(IMapper mapper, ICompanyService companyService, UserManager<User> userManager, IFileUploaderService fileUploader)
+        public CompanyController(IMapper mapper, ICompanyService companyService, UserManager<User> userManager,
+            IFileUploaderService fileUploader)
         {
             _mapper = mapper;
             _companyService = companyService;
@@ -32,7 +33,7 @@ namespace WebApplication.Areas.Partners.Controllers
             _fileUploader = fileUploader;
         }
 
-        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 10) 
+        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 10)
         {
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.Title = "Empresas";
@@ -44,9 +45,9 @@ namespace WebApplication.Areas.Partners.Controllers
         public IActionResult New()
         {
             ViewBag.Title = "Nova empresa";
-            return View();   
+            return View();
         }
-        
+
         [HttpPost("criar")]
         public async Task<IActionResult> New(CompanyViewModel viewModel)
         {
@@ -57,59 +58,78 @@ namespace WebApplication.Areas.Partners.Controllers
             {
                 await using var fileMemoryStream = new MemoryStream();
                 viewModel.ProfilePictureUpload.CopyTo(fileMemoryStream);
-                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
+                var fileName = Guid.NewGuid().ToString("N") +
+                               Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
                 company.ProfilePicture = await _fileUploader.Upload(fileMemoryStream, fileName);
             }
 
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }
-        
+
         [HttpGet("editar/{id}")]
         public async Task<IActionResult> Edit(long id)
         {
             var company = await _companyService.Get(id);
             var mappedCompany = _mapper.Map<CompanyViewModel>(company);
             ViewBag.Title = mappedCompany.Name;
-            return View("New", mappedCompany);   
+            ViewData["CompanyId"] = company.Id;
+            return View("New", mappedCompany);
         }
-        
+
         [HttpPost("editar/{id}")]
         public async Task<IActionResult> Edit(long id, CompanyViewModel viewModel)
         {
             var actor = await _userManager.FindByNameAsync(User.Identity.Name);
             var company = _mapper.Map<Company>(viewModel);
             company.Id = id;
-            
+
             if (viewModel.ProfilePictureUpload != null)
             {
                 await using var fileMemoryStream = new MemoryStream();
                 viewModel.ProfilePictureUpload.CopyTo(fileMemoryStream);
-                var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
+                var fileName = Guid.NewGuid().ToString("N") +
+                               Path.GetExtension(viewModel.ProfilePictureUpload.FileName).ToLower();
                 company.ProfilePicture = await _fileUploader.Upload(fileMemoryStream, fileName);
             }
-            
+
             await _companyService.Save(company, actor);
             return LocalRedirect(Url.Action("Index"));
         }
-        
-        [HttpGet("colaborador/{email}")]
-        public async Task<IActionResult> CheckUserCompany(string email)
+
+        [HttpGet("colaborador/{companyId}/{email}")]
+        public async Task<IActionResult> CheckUserCompany(long companyId, string email)
         {
             email = Encoding.UTF8.GetString(Convert.FromBase64String(email));
+            if (User.Identity.Name == email)
+                return BadRequest(new {message = "Não é possível adicionar a si mesmo em uma empresa."});
+            
             var user = await _userManager.FindByEmailAsync(email);
+
             if (user is null)
                 return NotFound();
             
-            return Ok();
+            var alreadyExistsOnCompany = await  _companyService.CheckExistence(companyId, user.Id);
+            
+            if(alreadyExistsOnCompany)
+                return BadRequest(new {message = "Usuário já está cadastrado na empresa."});
+
+            return Ok(new {name = user.Name, email = user.Email});
         }
 
         [HttpPost("colaborador")]
         public async Task<IActionResult> AddUserCompany(UserCompanyViewModel viewModel)
         {
-            return Ok();
+            var user = await _userManager.FindByEmailAsync(viewModel.CollaboratorEmail);
+            var userCompany = new UserCompany()
+            {
+                CompanyId = viewModel.CompanyId,
+                UserId = user.Id
+            };
+            await _companyService.Save(userCompany);
+            return LocalRedirect(Url.Action("Edit", new {id = viewModel.CompanyId}));
         }
-        
+
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(IFormFile file)
         {

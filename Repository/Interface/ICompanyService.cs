@@ -13,6 +13,8 @@ namespace Repository.Interface
         Task<int> Count(User user);
         Task<Company> Get(string uri);
         Task<Company> Get(long id);
+        Task<bool> CheckExistence(long companyId, string userId);
         Task Save(Company o, User actor);
+        Task Save(UserCompany o);
     }
 }

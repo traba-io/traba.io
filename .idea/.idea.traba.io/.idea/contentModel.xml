@@ -81,6 +81,7 @@
         <e p="Templates" t="Include">
           <e p="ConfirmAccount.html" t="Include" />
           <e p="ResetPassword.html" t="Include" />
+          <e p="UserAddedToCompany.html" t="Include" />
         </e>
         <e p="Util" t="Include">
           <e p="TemplateUtils.cs" t="Include" />
@@ -198,6 +199,7 @@
               <e p="Company" t="Include">
                 <e p="Index.cshtml" t="Include" />
                 <e p="New.cshtml" t="Include" />
+                <e p="UserCompanyModal.cshtml" t="Include" />
               </e>
               <e p="Event" t="Include">
                 <e p="Index.cshtml" t="Include" />
@@ -279,6 +281,7 @@
             <e p="Index.cshtml" t="Include" />
             <e p="JobOpportunities.cshtml" t="Include" />
             <e p="JobOpportunity.cshtml" t="Include" />
+            <e p="JobOpportunityCard.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />

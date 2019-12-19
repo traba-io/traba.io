@@ -7,8 +7,8 @@
         <AssemblyVersion>1.0.0</AssemblyVersion>
         <NeutralLanguage>pt-BR</NeutralLanguage>
         <FileVersion>1.0.0</FileVersion>
-        <AssemblyName>traba.io - WebApplication</AssemblyName>
-        <RootNamespace>traba.io - WebApplication</RootNamespace>
+        <AssemblyName>traba.io</AssemblyName>
+        <RootNamespace>traba.io</RootNamespace>
     </PropertyGroup>
 
 

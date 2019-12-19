@@ -1,42 +1,17 @@
-﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
+﻿FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /app
-EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
-WORKDIR /src
-COPY traba.io.sln ./
-COPY Domain/*.csproj ./Domain/
-COPY Infrastructure/*.csproj ./Infrastructure/
-COPY Infrastructure.Tests/*.csproj ./Infrastructure.Tests/
-COPY Repository/*.csproj ./Repository/
-COPY Repository.Tests/*.csproj ./Repository.Tests/
-COPY WebApplication/*.csproj ./WebApplication/
-
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
 RUN dotnet restore
-COPY . .
 
-WORKDIR /src/Domain
-RUN dotnet build -c Release -o /app
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /app/aspnetapp
+RUN dotnet publish -c Release -o out
 
-WORKDIR /src/Infrastructure
-RUN dotnet build -c Release -o /app
-
-WORKDIR /src/Infrastructure.Tests
-RUN dotnet build -c Release -o /app
-
-WORKDIR /src/Repository
-RUN dotnet build -c Release -o /app
-
-WORKDIR /src/Repository.Tests
-RUN dotnet build -c Release -o /app
-
-WORKDIR /src/WebApplication
-RUN dotnet build -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish -c Release -o /app
-
-FROM runtime AS final
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
-COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "WebApplication.dll"]
+COPY --from=build /app/aspnetapp/out ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]

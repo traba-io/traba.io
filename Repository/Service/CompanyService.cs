@@ -27,6 +27,7 @@ namespace Repository.Service
 
         public Task<Company> Get(string uri) => Context.Companies.FirstOrDefaultAsync(c => c.Namespace == uri);
         public Task<Company> Get(long id) => Context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+        public Task<bool> CheckExistence(long companyId, string userId) => Context.UserCompanies.AnyAsync(uc => uc.CompanyId == companyId && uc.UserId == userId);
 
         public Task Save(Company o, User actor)
         {
@@ -39,6 +40,12 @@ namespace Repository.Service
             o.Namespace = o.Name.ToUri();
             
             return base.Save(o);
+        }
+
+        public async Task Save(UserCompany o)
+        {
+            await Context.UserCompanies.AddAsync(o);
+            await Context.SaveChangesAsync();
         }
     }
 }

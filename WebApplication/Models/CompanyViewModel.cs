@@ -8,8 +8,10 @@ namespace WebApplication.Models
         public CompanyViewModel()
         {
             this.Users = new List<UserPreviewViewModel>();
+            this.UserCompanyViewModel = new UserCompanyViewModel();
         }
-        
+
+        public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }
@@ -26,5 +28,7 @@ namespace WebApplication.Models
         public IFormFile ProfilePictureUpload { get; set; }
 
         public List<UserPreviewViewModel> Users { get; set; }
+
+        public UserCompanyViewModel UserCompanyViewModel { get; set; }
     }
 }

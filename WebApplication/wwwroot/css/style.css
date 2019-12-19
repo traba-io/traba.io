@@ -9581,6 +9581,13 @@ textarea.form-control {
   color: #82BC41 !important;
 }
 
+.elemente p.elementex a.companyLink{
+  font-size: 18px;
+  color: #82BC41 !important;
+  line-height: 1;
+  font-weight: 400;
+}
+
 .elementex a{
   font-size: 22px;
   color: black;

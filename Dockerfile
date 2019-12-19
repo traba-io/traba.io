@@ -1,8 +1,7 @@
-﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
+﻿FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /app
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /src
 COPY traba.io.sln ./
 COPY Domain/*.csproj ./Domain/
@@ -33,10 +32,8 @@ RUN dotnet build -c Release -o /app
 WORKDIR /src/WebApplication
 RUN dotnet build -c Release -o /app
 
-FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
-FROM runtime AS final
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "WebApplication.dll"]

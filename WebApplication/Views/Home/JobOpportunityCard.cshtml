@@ -1,0 +1,13 @@
+@model Domain.Entity.JobOpportunity
+
+<div class="col-md-4 elemente">
+    <p class="elementex">
+        <a asp-action="Company" asp-route-companyNamespace="@Model.Company.Namespace" class="companyLink">@Model.Company.Name</a>
+        <br>
+        <a asp-action="JobOpportunity" asp-route-companyNamespace="@Model.Company.Namespace" asp-route-jobOpportunityUri="@Model.Uri">@Model.Title</a><br>
+        <span>
+            <i class="fas fa-map-marker"></i> Fortaleza - CE<br>
+            <i class="fas fa-clock"></i> segunda, 23/05
+        </span>
+    </p>
+</div>

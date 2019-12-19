@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http
+﻿@using Domain.Util
+@using Microsoft.AspNetCore.Http
 @using WebApplication.Controllers
 @using WebApplication.Extensions
 @{
@@ -34,6 +35,14 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#">
                 <i class="fas fa-bars"></i>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
     </ul>
@@ -138,12 +147,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-        @* <img src="../../dist/img/AdminLTELogo.png" *@
-        @*      alt="AdminLTE Logo" *@
-        @*      class="brand-image img-circle elevation-3" *@
-        @*      style="opacity: .8"> *@
-        <span class="brand-text font-weight-light">traba.io</span>
+    <a href="/" class="brand-link logo-switch">
+        <img src="~/images/ico_white.png" alt="traba.io Logo" class="brand-image-xl logo-xs">
+        <img src="~/images/logo_white_300.png" alt="traba.io Logo" class="brand-image-xs logo-xl">
     </a>
 
     <!-- Sidebar -->
@@ -151,7 +157,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="https://www.gravatar.com/avatar/@Html.GetMd5Hash(@User.Identity.Name)?d=identicon" class="img-circle elevation-2" alt="User Image">
+                <img src="https://www.gravatar.com/avatar/@Html.GetMd5Hash(User.Identity.Name)?d=identicon" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">@User.Identity.Name</a>
@@ -187,22 +193,26 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a asp-area="Partners" asp-controller="Event" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/eventos") ? "active" : "")">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
-                        <p>
-                            Eventos
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-area="Partners" asp-controller="Invoice" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/faturas") ? "active" : "")">
-                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
-                        <p>
-                            Faturas
-                        </p>
-                    </a>
-                </li>
+                <feature name="Event">
+                    <li class="nav-item">
+                        <a asp-area="Partners" asp-controller="Event" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/eventos") ? "active" : "")">
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                                Eventos
+                            </p>
+                        </a>
+                    </li>
+                </feature>
+                <feature name="Invoices">
+                    <li class="nav-item">
+                        <a asp-area="Partners" asp-controller="Invoice" asp-action="Index" class="nav-link @(Html.IsMenuActive("/parceiros/faturas") ? "active" : "")">
+                            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                            <p>
+                                Faturas
+                            </p>
+                        </a>
+                    </li>
+                </feature>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -219,6 +229,20 @@
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
         <b>Versão</b> @typeof(HomeController).Assembly.GetName().Version.ToString(3)
+        @if (EnvironmentVariables.AspNetCoreEnvironment != "Production")
+        {
+            switch (EnvironmentVariables.AspNetCoreEnvironment)
+            {
+                case "Staging":
+                    <b>Homologação</b>
+                    break;
+                case "Development":
+                    <b>Desenvolvimento</b>
+                    break;
+                default:
+                    break;
+            }
+        }
     </div>
     <strong>Copyright &copy; @DateTime.Now.Year <a href="/">traba.io</a>.</strong> Todos os direitos reservados.
 </footer>

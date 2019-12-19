@@ -5,7 +5,9 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="/"><b>traba</b>.io</a>
+        <a href="/">
+            <img src="~/images/logo_300.png" alt="traba.io"/>
+        </a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -21,6 +23,7 @@
                         </div>
                     </div>
                 </div>
+                <span asp-validation-for="Email"></span>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Password" asp-for="Password">
                     <div class="input-group-append">
@@ -29,6 +32,7 @@
                         </div>
                     </div>
                 </div>
+                <span asp-validation-for="Password"></span>
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
@@ -46,13 +50,22 @@
                 </div>
             </form>
 
-            <div class="social-auth-links text-center mb-3">
-                <p>- OU -</p>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google mr-2"></i> Entrar usando o Google
-                </a>
-            </div>
-            <!-- /.social-auth-links -->
+            <feature name="LoginWithGoogle, LoginWithLinkedIn" requirement="Any">
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OU -</p>
+                    <feature name="LoginWithGoogle">
+                        <a href="#" class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-2"></i> Entrar usando o Google
+                        </a>
+                    </feature>
+                    <feature name="LoginWithLinkedIn">
+                        <a href="#" class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-2"></i> Entrar usando o Google
+                        </a>
+                    </feature>
+                </div>
+                <!-- /.social-auth-links -->
+            </feature>
 
             <p class="mb-1">
                 <a asp-controller="Account" asp-action="ForgotPassword">Eu esqueci minha senha</a>

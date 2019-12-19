@@ -1,4 +1,4 @@
-@model List<Domain.Entity.Company>
+@model IPagedList<Domain.Entity.Company>
 
 @{
     Layout = "_Layout";
@@ -36,48 +36,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach(var company in @Model)
+                @foreach (var company in @Model)
                 {
                     <tr>
-                        <td><a asp-area="Partners" asp-action="Edit" asp-route-id="@company.Id" >@company.Name</a></td>
+                        <td>
+                            <a asp-area="Partners" asp-action="Edit" asp-route-id="@company.Id">@company.Name</a>
+                        </td>
                         <td>
                             @* <span class="badge bg-danger" style="display: @(i % 2 == 0 ? "none" : "")">DONO</span> *@
                         </td>
                         <td>@company.Document</td>
                     </tr>
                 }
-@*                 @for (var i = 1; i <= 10; i++) *@
-@*                 { *@
-@*                     <tr> *@
-@*                         <td>Indgo Soluções em Tecnologia <i class="fas fa-check-circle fa-xs" style="color: #1b6ec2; display: @(i % 2 == 0 ? "none" : "")"></i></td> *@
-@*                         <td> *@
-@*                             <span class="badge bg-danger" style="display: @(i % 2 == 0 ? "none" : "")">DONO</span> *@
-@*                         </td> *@
-@*                         <td>30.232.370/0001-15</td> *@
-@*                     </tr> *@
-@*                 } *@
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            @* <ul class="pagination pagination-sm m-0 float-right"> *@
-            @*     <li class="page-item"> *@
-            @*         <a class="page-link" href="#">«</a> *@
-            @*     </li> *@
-            @*     <li class="page-item"> *@
-            @*         <a class="page-link" href="#">1</a> *@
-            @*     </li> *@
-            @*     <li class="page-item"> *@
-            @*         <a class="page-link" href="#">2</a> *@
-            @*     </li> *@
-            @*     <li class="page-item"> *@
-            @*         <a class="page-link" href="#">3</a> *@
-            @*     </li> *@
-            @*     <li class="page-item"> *@
-            @*         <a class="page-link" href="#">»</a> *@
-            @*     </li> *@
-            @* </ul> *@
+            <span style="vertical-align: middle">Listando registros de @Model.FirstItemOnPage a @Model.LastItemOnPage de um total de @Model.TotalItemCount</span>
+            <ul class="pagination pagination-sm m-0 float-right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {pageIndex = page}),
+                    new PagedListRenderOptions
+                    {
+                        LinkToPreviousPageFormat = "Anterior",
+                        LinkToNextPageFormat = "Próximo",
+                        LiElementClasses = new string[] {"page-item"},
+                        PageClasses = new string[] {"page-link"}
+                    })
+            </ul>
         </div>
         <!-- /.card-footer -->
     </div>

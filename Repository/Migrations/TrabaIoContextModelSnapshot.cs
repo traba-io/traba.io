@@ -60,6 +60,9 @@ namespace Repository.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
+                    b.Property<string>("ProfilePicture")
+                        .HasColumnType("text");
+
                     b.Property<string>("State")
                         .HasColumnType("text");
 

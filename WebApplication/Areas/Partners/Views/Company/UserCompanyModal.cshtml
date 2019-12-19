@@ -1,0 +1,33 @@
+@model UserCompanyViewModel
+
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar Colaborador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="newUserCompanyForm" role="form" asp-action="AddUserCompany" method="post">
+                    <input type="hidden" asp-for="CompanyId" value="@ViewData["CompanyId"]"/>
+                    <div class="input-group">
+                        <input type="email" asp-for="CollaboratorEmail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" id="verifyEmailBtn" type="button">
+                                Verificar
+                            </button>
+                        </div>
+                        <div class="invalid-feedback" id="searchUserError"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" form="newUserCompanyForm" id="addUserCompanyButton" class="btn btn-outline-success" disabled>Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,45 +1,172 @@
-﻿@model List<Domain.Entity.JobOpportunity>
+﻿@model X.PagedList.IPagedList<Domain.Entity.JobOpportunity>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Início";
 }
 
-<div class="card-deck">
-    @foreach (var job in @Model)
-    {
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@job.Title</h5>
-                    <p class="card-text">@job.Excerpt</p>
-                    <a asp-action="JobOpportunity" asp-route-companyNamespace="@job.Company.Namespace" asp-route-jobOpportunityUri="@job.Uri" class="btn btn-primary">Visualizar</a>
+@section Styles
+{
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/style.css">
+    </environment>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/style.min.css">
+    </environment>
+}
+
+<!-- INICIO banner -->
+<div class="hero-wrap js-fullheight"data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-end" data-scrollax-parent="true">
+            <div class="col-md-6 ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                    Lorem Ipsum is simply and
+                    <br> dummy text of the and
+                </h1>
+                <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Lorem Ipsum is simply dummy text of the printing<br> and typesetting industry. Lorem Ipsum has been.</p>
+            </div>
+
+            <div class="col-md-6 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+                <img class="element_img" src="images/Frame.png">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FINAL Banner -->
+
+
+<!-- INICIO Info -->
+<section class="ftco-section services-section">
+
+    <div class="container">
+        <div class="row justify-content-center pb-5">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h2 class="">
+                    What is Lorem Ipsum?
+                </h2>
+                <span class="elementposition">
+                    <img src="images/seta.png">
+                </span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4    ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon2">
+                        <i class=" fas fa-bullhorn"></i>
+                    </div>
+                    <div class="media-body textcenter">
+                        <h3 class="heading mb-3">What is Lorem Ipsum?</h3>
+                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a asp-action="Company" asp-route-companyNamespace="@job.Company.Namespace">
-                        <small class="text-muted float-left">@job.Company.Name</small>
-                    </a>
-                    <small class="text-muted float-right">@job.CreatedDate</small>
+            </div>
+            <div class="col-md-4 ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon2">
+                        <i class="fas fa-business-time"></i>
+                    </div>
+                    <div class="media-body textcenter">
+                        <h3 class="heading mb-3">What is Lorem Ipsum?</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4    ftco-animate">
+                <div class="media block-6 services d-block">
+                    <div class="icon2">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="media-body textcenter">
+                        <h3 class="heading mb-3">What is Lorem Ipsum?</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    }
-</div>
+    </div>
+</section>
+<!-- FINAL Info -->
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">Proximo</a>
-        </li>
-    </ul>
-</nav>
+
+<!-- INICIO Jobs -->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center pb-5">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <h2 class="">
+                    Vagas
+                </h2>
+                <span class="elementposition">
+                    <img src="images/seta.png">
+                </span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            @foreach (var job in Model)
+            {
+                @Html.Partial("JobOpportunityCard", job)
+            }
+        </div>
+        <br>
+
+        <div class="text-center">
+            <p class="ftco-animate mt-4">
+                <a asp-action="JobOpportunities" class="btn btn-primary py-3 px-5">Mais Vagas <i class="fas fa-arrow-right"></i></a>
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- FINAL Jobs -->
+
+<feature name="Event">
+    <!-- INICIO Empre -->
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="">
+                        Eventos
+                    </h2>
+                    <span class="elementposition">
+                        <img src="images/seta.png">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                @for (var i = 0; i < 6; i++)
+                {
+                    <div class="col-md-6 col-lg-4 ftco-animate">
+                        <div class="project">
+                            <div class="img">
+                                <img src="~/images/01.jpg" class="img-fluid" alt="Evento">
+                            </div>
+                            <div class="text">
+                                <h4 class="price">24 de dezembro</h4>
+                                <span><i class="fas fa-map-marker"></i> Fortaleza - CE</span>
+                                <h3>
+                                    <a href="eventoperfil.html">Unilever Eventos</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="text-center">
+                <p class="ftco-animate mt-4">
+                    <a asp-action="JobOpportunities" class="btn btn-primary py-3 px-5">Mais Eventos <i class="fas fa-arrow-right"></i></a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- FINAL Empre -->
+</feature>

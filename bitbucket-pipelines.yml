@@ -1,0 +1,18 @@
+image: mcr.microsoft.com/dotnet/core/sdk:3.0
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Development deploy
+          deployment: Staging
+          script:
+            - git remote add dokku $DOKKU_STAGGING_HOST
+            - git push dokku master
+  custom:
+    deploy:
+      - step:
+          name: Deploy
+          script:
+            - git remote add dokku $DOKKU_PRODUCTION_HOST
+            - git push dokku master

@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
             _companyService = companyService;
         }
 
-        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 10)
+        public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 12)
         {
             var jobs = await _jobOpportunity.Get(pageIndex, pageLimit);
             return View(jobs);
@@ -38,8 +38,15 @@ namespace WebApplication.Controllers
             return View(company);
         }
         
+        [HttpGet("vagas")]
+        public async Task<IActionResult> JobOpportunities(int pageIndex = 1, int pageLimit = 12)
+        {
+            var companies = await _jobOpportunity.Get(pageIndex, pageLimit);
+            return View(companies);
+        }
+        
         [HttpGet("empresas")]
-        public async Task<IActionResult> Companies(int pageIndex = 1, int pageLimit = 10)
+        public async Task<IActionResult> Companies(int pageIndex = 1, int pageLimit = 12)
         {
             var companies = await _companyService.Get(pageIndex, pageLimit);
             return View(companies);
@@ -49,6 +56,12 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> Events(int pageIndex = 1, int pageLimit = 10)
         {
             return View();
+        }
+        
+        [HttpGet("health/ping")]
+        public IActionResult Ping()
+        {
+            return Ok("pong");
         }
         
         [HttpGet("r/{eventUri}")]

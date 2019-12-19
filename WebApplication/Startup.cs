@@ -1,5 +1,9 @@
 using System;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
+using App.Metrics;
+using App.Metrics.Reporting.Graphite.Client;
 using AutoMapper;
 using Domain.Entity;
 using Domain.Util;
@@ -8,10 +12,12 @@ using Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 using Repository;
 using Repository.Interface;
 using Repository.Service;
@@ -41,8 +47,10 @@ namespace WebApplication
                     .UseLazyLoadingProxies()
                     .UseNpgsql(EnvironmentVariables.DatabaseUrl);
             });
+
+            services.AddFeatureManagement();
             
-            services.AddIdentity<User, IdentityRole>(opts => { opts.SignIn.RequireConfirmedEmail = true; })
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TrabaIoContext>().AddDefaultTokenProviders();
             
             services.AddScoped<IJobOpportunityService, JobOpportunityService>();
@@ -53,18 +61,24 @@ namespace WebApplication
             
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
-
-                // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
+                if (EnvironmentVariables.AspNetCoreEnvironment == "Production")
+                {
+                    // Password settings.
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequiredUniqueChars = 1;
+                    
+                    // Lockout settings.
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                    options.Lockout.AllowedForNewUsers = true;
+                    
+                    // SignIn settings.
+                    options.SignIn.RequireConfirmedEmail = true;
+                }
 
                 // User settings.
                 options.User.AllowedUserNameCharacters =
@@ -76,19 +90,39 @@ namespace WebApplication
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromHours(5);
 
                 options.LoginPath = "/conta/entrar";
                 options.SlidingExpiration = true;
             });
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
+            
+            var metrics = AppMetrics.CreateDefaultBuilder().Report.ToGraphite(opts =>
+                {
+                    opts.Graphite.BaseUri = new Uri(EnvironmentVariables.StatsdUrl);
+                    
+                    opts.ClientPolicy.BackoffPeriod = TimeSpan.FromSeconds(30);
+                    opts.ClientPolicy.FailuresBeforeBackoff = 5;
+                    opts.ClientPolicy.Timeout = TimeSpan.FromSeconds(10);
+                    
+                    opts.FlushInterval = TimeSpan.FromSeconds(5);
+                }).Build();
 
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMetrics(metrics);
+            services.AddMetricsTrackingMiddleware();
+
+            services.AddMvc(option => option.EnableEndpointRouting = false).AddMetrics();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
         {
+            var ci = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+
+            app.UseMetricsAllMiddleware();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

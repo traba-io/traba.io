@@ -7,6 +7,8 @@
         <AssemblyVersion>1.0.0</AssemblyVersion>
         <NeutralLanguage>pt-BR</NeutralLanguage>
         <FileVersion>1.0.0</FileVersion>
+        <AssemblyName>traba.io - WebApplication</AssemblyName>
+        <RootNamespace>traba.io - WebApplication</RootNamespace>
     </PropertyGroup>
 
 
@@ -23,8 +25,21 @@
 
 
     <ItemGroup>
+      <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="4.0.0-preview1.0.3" />
+      <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="4.0.0-preview1.0.3" />
+      <PackageReference Include="App.Metrics.Reporting.Graphite" Version="4.0.0-preview1.0.3" />
       <PackageReference Include="AutoMapper" Version="9.0.0" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" />
+      <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.0.0-preview-010610001-1263" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Partners\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Company\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Components\JobOpportunity.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Partners\Views\Partials\JobOpportunityCard.cshtml" />
     </ItemGroup>
 
 </Project>

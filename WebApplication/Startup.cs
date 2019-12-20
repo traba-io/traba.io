@@ -99,8 +99,16 @@ namespace WebApplication
             });
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
-            
+
+            var metrics = new MetricsBuilder()
+                .Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5))
+//                .Report.ToTextFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "metrics.txt"),TimeSpan.FromSeconds(5))
+                .Build();
+
+            services.AddMetrics(metrics);
             services.AddMetricsTrackingMiddleware();
+            services.AddMetricsReportingHostedService();
+            services.AddMetricsEndpoints();
             services.AddMvc(option => option.EnableEndpointRouting = false).AddMetrics();
         }
         
@@ -109,8 +117,6 @@ namespace WebApplication
             var ci = new CultureInfo("pt-BR");
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
-
-            app.UseMetricsRequestTrackingMiddleware();
 
             if (env.IsDevelopment())
             {
@@ -121,13 +127,16 @@ namespace WebApplication
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            
+
             context.Database.Migrate();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
+            app.UseMetricsAllEndpoints();
+            app.UseMetricsAllMiddleware();
             app.UseRouting();
+            
 
             app.UseAuthentication();
             app.UseAuthorization();

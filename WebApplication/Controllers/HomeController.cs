@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Metrics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Repository.Interface;
@@ -14,15 +15,18 @@ namespace WebApplication.Controllers
     {
         private readonly IJobOpportunityService _jobOpportunity;
         private readonly ICompanyService _companyService;
+        private readonly IMetricsRoot _metrics; 
         
-        public HomeController(IJobOpportunityService jobOpportunity, ICompanyService companyService)
+        public HomeController(IJobOpportunityService jobOpportunity, ICompanyService companyService, IMetricsRoot metrics)
         {
             _jobOpportunity = jobOpportunity;
             _companyService = companyService;
+            _metrics = metrics;
         }
 
         public async Task<IActionResult> Index(int pageIndex = 1, int pageLimit = 12)
         {
+            await Task.WhenAll(_metrics.ReportRunner.RunAllAsync());
             var jobs = await _jobOpportunity.Get(pageIndex, pageLimit);
             return View(jobs);
         }

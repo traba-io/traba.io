@@ -27,6 +27,7 @@
     <ItemGroup>
       <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="4.0.0-preview1.0.3" />
       <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="4.0.0-preview1.0.3" />
+      <PackageReference Include="App.Metrics.Extensions.Mvc" Version="1.2.1" />
       <PackageReference Include="App.Metrics.Reporting.Graphite" Version="4.0.0-preview1.0.3" />
       <PackageReference Include="App.Metrics.Reporting.TextFile" Version="4.0.0-preview1.0.3" />
       <PackageReference Include="AutoMapper" Version="9.0.0" />

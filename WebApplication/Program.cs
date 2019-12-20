@@ -21,11 +21,8 @@ namespace WebApplication
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureMetricsWithDefaults(builder =>
-                    {
-                        builder.Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5));
-                    })
                 .UseMetrics()
+                .UseMetricsWebTracking()
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

@@ -99,17 +99,9 @@ namespace WebApplication
             });
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
-
-            var metrics = new MetricsBuilder()
-//                .Report.ToTextFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "metrics.txt"),TimeSpan.FromSeconds(5))
-                .Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5))
-                .Build();
-
-            services.AddSingleton(metrics);
-
-            services.AddMetrics(metrics);
+            
             services.AddMetricsTrackingMiddleware();
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMvc(option => option.EnableEndpointRouting = false).AddMetrics();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)

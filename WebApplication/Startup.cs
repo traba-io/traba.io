@@ -101,8 +101,8 @@ namespace WebApplication
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
 
             var metrics = new MetricsBuilder()
-                .Report.ToTextFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "metrics.txt"),TimeSpan.FromSeconds(5))
-//                .Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5))
+//                .Report.ToTextFile(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "metrics.txt"),TimeSpan.FromSeconds(5))
+                .Report.ToGraphite(EnvironmentVariables.StatsdUrl, TimeSpan.FromSeconds(5))
                 .Build();
 
             services.AddSingleton(metrics);

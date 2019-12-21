@@ -188,7 +188,10 @@
 </section>
 <!-- /.content -->
 
-@Html.Partial("UserCompanyModal", @Model.UserCompanyViewModel, ViewData)
+@if (!(Model?.UserCompanyViewModel is null))
+{
+    @Html.Partial("UserCompanyModal", @Model.UserCompanyViewModel, ViewData)
+}
 
 @section Scripts
 {
@@ -216,7 +219,7 @@
               emailField.removeClass('is-valid');
               emailField.removeClass('is-invalid');
               addBtn.attr('disabled', true);
-              $.ajax(`/parceiros/empresas/colaborador/${@Model.Id}/${btoa(emailField.val())}`)
+              $.ajax(`/parceiros/empresas/colaborador/${@Model?.Id}/${btoa(emailField.val())}`)
               .then(r => {
                   emailField.addClass('is-valid');
                   addBtn.attr('disabled', false);

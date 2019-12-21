@@ -7,9 +7,11 @@ using Domain.Entity;
 using Infrastructure.Enum;
 using Infrastructure.Interface;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.AspNetCore.WebUtilities;
 using WebApplication.Models;
 
@@ -35,6 +37,22 @@ namespace WebApplication.Controllers
         {
             ViewBag.Title = "Entrar";
             return View();
+        }
+        
+        [HttpGet("entrar/google")]
+        public IActionResult LoginGoogle()
+        {
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("LoginGoogleCallback"));
+            return new ChallengeResult("Google", properties);    
+        }
+        
+        [HttpGet]
+        [HttpGet("entrar/google-callback")]
+        public async Task<IActionResult> LoginGoogleCallback()
+        {
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            // var user = await _userManager.FindByEmailAsync(info.)
+            return LocalRedirect(Url.Action("Login"));
         }
         
         [HttpPost("entrar")]

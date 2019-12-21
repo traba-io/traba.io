@@ -26,7 +26,8 @@
         "AWS_BUCKET_NAME": "traba.io",
         "TINYPNG_API_KEY": "HGGx9fRx4grwTNTlm7TVkprqwCFCPxVw",
         "DATABASE_URL": "User ID=postgres;Password=21101974;Host=localhost;Port=5432;Database=trabaio;",
-        "STATSD_URL": "net.tcp://127.0.0.1:2003"
+        "STATSD_URL": "net.tcp://127.0.0.1:2003",
+        "GOOGLE_PLUS_API_KEY": "AIzaSyD6xpuwgnqZ4_wUUtjXgrqv0v1XPVnXLDU"
       }
     }
   }

@@ -33,14 +33,15 @@ namespace WebApplication
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(hostingEnvironment.ContentRootPath)
-                .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: false,
+                    reloadOnChange: true)
                 .AddEnvironmentVariables();
-            
+
             Configuration = builder.Build();
         }
 
         private IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TrabaIoContext>(options =>
@@ -51,16 +52,16 @@ namespace WebApplication
             });
 
             services.AddFeatureManagement();
-            
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TrabaIoContext>().AddDefaultTokenProviders();
-            
+
             services.AddScoped<IJobOpportunityService, JobOpportunityService>();
             services.AddScoped<ICompanyService, CompanyService>();
-            
+
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IFileUploaderService, S3FileUploaderService>();
-            
+
             services.Configure<IdentityOptions>(options =>
             {
                 if (EnvironmentVariables.AspNetCoreEnvironment == "Production")
@@ -72,12 +73,12 @@ namespace WebApplication
                     options.Password.RequireUppercase = true;
                     options.Password.RequiredLength = 6;
                     options.Password.RequiredUniqueChars = 1;
-                    
+
                     // Lockout settings.
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
                     options.Lockout.MaxFailedAccessAttempts = 5;
                     options.Lockout.AllowedForNewUsers = true;
-                    
+
                     // SignIn settings.
                     options.SignIn.RequireConfirmedEmail = true;
                 }
@@ -87,7 +88,7 @@ namespace WebApplication
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
             });
-            
+
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
@@ -96,6 +97,17 @@ namespace WebApplication
 
                 options.LoginPath = "/conta/entrar";
                 options.SlidingExpiration = true;
+            });
+
+            services.AddAuthentication()
+                .AddCookie()
+                .AddGoogle(opts =>
+            {
+                var googleAuthNSection =
+                    Configuration.GetSection("GoogleOAuth");
+
+                opts.ClientId = googleAuthNSection["ClientId"];
+                opts.ClientSecret = googleAuthNSection["ClientSecret"];
             });
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserProfile)));
@@ -111,7 +123,7 @@ namespace WebApplication
             services.AddMetricsEndpoints();
             services.AddMvc(option => option.EnableEndpointRouting = false).AddMetrics();
         }
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TrabaIoContext context)
         {
             var ci = new CultureInfo("pt-BR");
@@ -132,11 +144,11 @@ namespace WebApplication
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseMetricsAllEndpoints();
             app.UseMetricsAllMiddleware();
             app.UseRouting();
-            
+
 
             app.UseAuthentication();
             app.UseAuthorization();
